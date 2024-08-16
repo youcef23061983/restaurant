@@ -1,0 +1,298 @@
+{
+  "menu": [
+    {
+      "id": 1,
+      "name": "Couscous",
+      "description": "Le couscous est d'une part une semoule de blé dur préparée à l'huile d'olive et d'autre part, une spécialité culinaire issue de la cuisine berbère, à base de couscous, de légumes, d'épices, d'huile d'olive et de viande ou de poisson.",
+      "image": ["/images/menu/meals/kouskous.jpg"],
+      "price": [2000],
+      "type": "menu"
+    },
+    {
+      "id": 2,
+      "name": "Couscous noir",
+      "description": "Ce couscous noir qu'on ne trouve qu'en Algérie est peu connu en Tunisie. Il est fabriqué avec du blé dur ayant fermenté durant trois ans sous terre. Sa cuisson se caractérise par des relents assez forts mais son goût est des plus délicats.",
+      "image": ["/images/menu/meals/kouskousnoirpoisson.jpg"],
+      "price": [1500],
+      "type": "menu"
+    },
+    {
+      "id": 3,
+      "name": "osban",
+      "description": "L'osban est un plat cuisiné à base de panse de mouton (dite kercha) farcie avec des abats de mouton finement découpés : intestins, cœur, foie, poumon et m’jebna (la partie de la graisse de mouton appelée crépine)2. À cette composition, du riz et des pois chiches sont ajoutés. La farce est assaisonnée d'oignon et de coriandre hachés, de sel, de poivre noir, de paprika et de tomate concentrée1 et, facultativement, de harissa.",
+      "image": ["/images/menu/meals/assbane.jpg"],
+      "price": [2200],
+      "type": "menu"
+    },
+    {
+      "id": 4,
+      "name": "bouzelouf",
+      "description": "La chtitha bouzelouf est une recette traditionnelle algéroise. Appelée également kebda mchermla, il s'agit simplement d'abats de mouton cuisinés en sauce à base d'ail et de tomates. Traditionnellement, le chtitha se sert sur les tablées lors de la fête de l'Aïd.",
+      "image": ["/images/menu/meals/bouzaloufe.jpg"],
+      "price": [1800],
+      "type": "menu"
+    },
+    {
+      "id": 5,
+      "name": "douara",
+      "description": "Le tajine douara, ou dowara, est une recette ancestrale de la cuisine algérienne. Ce plat riche aux tripes d'agneau et aux légumes est une recette emblématique qui doit être toujours préparer durant l'Aïd el-Kebir",
+      "image": ["/images/menu/meals/douwara.jpg"],
+      "price": [1800],
+      "type": "menu"
+    },
+    {
+      "id": 6,
+      "name": "Riz au poulet",
+      "description": "Le riz au poulet hainanais est un plat composé de succulent poulet blanc poché coupé en bouchées et servi sur du riz parfumé avec un peu de sauce soja légère . Le plat est garni de brins de feuilles de coriandre et d'huile de sésame, et accompagné d'une trempette à l'ail et au piment.",
+      "image": ["/images/menu/meals/elrouzebeljaje.jpg"],
+      "price": [2000],
+      "type": "menu"
+    },
+    {
+      "id": 7,
+      "name": "Mtewem",
+      "description": "Le mtewem ou tajine mtewem est un plat algérien, et plus précisément algérois, fait à base de boulettes de viande hachée, de morceaux de poulet ou de viande d'agneau et d'amandes. Sa sauce est préparée avec un oignon râpé et beaucoup d'ail, comme son nom l'indique.",
+      "image": ["/images/menu/meals/methoume.jpg"],
+      "price": [2500],
+      "type": "menu"
+    },
+    {
+      "id": 8,
+      "name": "rechta",
+      "description": "La rechta est un plat à base de pâtes fraîches artisanales, coupées en lanières fines, typique de l'est du Maghreb. Elle est en particulier le plat symbolique de la cuisine algéroise.",
+      "image": ["/images/menu/meals/rachta.jpg"],
+      "price": [2000],
+      "type": "menu"
+    },
+    {
+      "id": 9,
+      "name": "trida",
+      "description": "La trida est un plat traditionnel algérien, originaire du nord-est du pays. Elle est préparée à base de pâtes très fines et carrées faites artisanalement, de poulet, de boulettes de viande, de pois chiches et d'œufs durs, le tout accompagné d'une sauce blanche.",
+      "image": ["/images/menu/meals/trida.jpg"],
+      "price": [2000],
+      "type": "menu"
+    },
+    {
+      "id": 10,
+      "name": "Chakhchoukha",
+      "description": "La chakhchoukha est un mets de fête se composant de pâte de semoule émiettée, cuite à la poêle, arrosée de sauce tomate rouge à la viande, épicée, de pois chiches et, dans quelques régions, de courgettes, de carottes et de navets, de fèves ou encore de pommes de terre.",
+      "image": ["/images/menu/meals/shakhshoukha.jpg"],
+      "price": [2000],
+      "type": "menu"
+    },
+    {
+      "id": 11,
+      "name": "chorba",
+      "description": "La chorba, chorwa, chourpa, chorpa, chorpo, sorpa, chaṛḇa, est une soupe traditionnelle d'Afrique du Nord, des Balkans, de l'Europe de l'Est, de l'Asie centrale, du Moyen-Orient et de l'Asie du Sud.",
+      "image": ["/images/menu/meals/shourba.jpg"],
+      "price": [1700],
+      "type": "menu"
+    },
+    {
+      "id": 12,
+      "name": "tikarbanine",
+      "description": "Ce plat se compose de boulettes de semoule, de forme ronde ou ovale, cuites dans une sauce rouge piquante, parfumée à la coriandre et à la menthe. Ces boules sont préparées avec de la semoule de blé (ou très rarement d'orge), d'huile, d'oignons et d'épices, un peu de sauce ainsi que beaucoup de coriandre et de menthe.",
+      "image": ["/images/menu/meals/tikarbanine.jpg"],
+      "price": [1300],
+      "type": "menu"
+    },
+    {
+      "id": 13,
+      "name": "Baklava",
+      "description": "Le baklava est un dessert traditionnel commun aux peuples des anciens empires ottoman et perse. On trouve également ce dessert dans plusieurs régions telles que le Caucase, les Balkans, le Moyen-Orient et l'Afrique du Nord.",
+      "image": ["/images/menu/desert/Baklava.jpg"],
+      "price": [300],
+      "type": "dessert"
+    },
+    {
+      "id": 14,
+      "name": "Lham hlou",
+      "description": "Le lham hlou, lham lahlou, ou tadjine lahlou, qui veut dire « viande sucrée » ou « tadjne doux », est un plat sucré algérien, fait à base de viande et de pruneaux principalement, avec éventuellement des abricots et décoré de raisins secs et d'amandes dans un sirop de sucre et d'eau de fleur d'oranger.",
+      "image": ["/images/menu/desert/Lham hlou.jpg"],
+      "price": [1500],
+      "type": "dessert"
+    },
+    {
+      "id": 15,
+      "name": "Kalb el louz",
+      "description": "Kalb el louz ou qalb el louz est une pâtisserie algérienne, originaire de Constantine. Cette pâtisserie est une des plus populaires du pays. Elle est très largement consommée durant les soirées du mois sacré du ramadan avec un thé à la menthe ou du thé noir aux clous de girofle ou du café.",
+      "image": ["/images/menu/desert/Kalb el louz.jpg"],
+      "price": [200],
+      "type": "dessert"
+    },
+    {
+      "id": 16,
+      "name": "Qatayef",
+      "description": "Le katayef, plus rarement transcrit qatayef en français ou atayef, est une pâtisserie levantine à base de pâte à crêpe, farcie de crème de lait, de pistache ou de noix.",
+      "image": ["/images/menu/desert/Qatayef.jpg"],
+      "price": [200],
+      "type": "dessert"
+    },
+    {
+      "id": 17,
+      "name": "Baghrir",
+      "description": "Le baghrir, ghrayef, khringo, tibouâjajin, appelé aussi en français mille trous, est une crêpe répandue au Maghreb préparée à base de semoule ou de farine, de levure et de sel, servie chaude, généralement imbibée de beurre et de miel.",
+      "image": ["/images/menu/desert/Baghrir.jpg"],
+      "price": [150],
+      "type": "dessert"
+    },
+    {
+      "id": 18,
+      "name": "Makroud",
+      "description": "Le makroud ou makrout, également orthographié maqroudh ou maqrouth, est une pâtisserie maghrébine, à base de semoule de blé et de pâte de dattes, reconnaissable à sa forme en losange. C'est une pâtisserie très populaire au Maghreb et également à Malte.",
+      "image": ["/images/menu/desert/Makroud.jpg"],
+      "price": [150],
+      "type": "dessert"
+    },
+    {
+      "id": 19,
+      "name": "griwech",
+      "description": "La chebakia (ou chbakia), appelée également griwech (aussi griouech ou griwèche) en Algérie ou m'kharqa (ou l'mkharqa) au Maroc, est une pâtisserie de forme roulée originaire du Maghreb, à base de farine, de matière grasse, de miel et d'eau de fleur d'oranger.",
+      "image": ["/images/menu/desert/griwech.jpg"],
+      "price": [150],
+      "type": "dessert"
+    },
+    {
+      "id": 20,
+      "name": "zlabia",
+      "description": "La zlabia, ou zelabia, parfois sous la forme jalebi, est une confiserie de la cuisine orientale traditionnelle. C'est une pâtisserie frite intermédiaire entre un gâteau et une confiserie. On la retrouve au Maghreb, en Afrique de l'Est, au Moyen-Orient, dans le sous-continent indien, en Asie du Sud.",
+      "image": ["/images/menu/desert/Zalabiyeh.jpg"],
+      "price": [200],
+      "type": "dessert"
+    },
+    {
+      "id": 21,
+      "name": "les cigares",
+      "description": "Les cigares au dessert sont une spécialité sucrée qui évoque l'élégance et le raffinement de la pâtisserie orientale. Ces délices croustillants, en forme de rouleaux fins, sont faits de feuilles de brick délicatement dorées au four ou frites, et garnis d'une farce parfumée. Traditionnellement, la farce est composée d'amandes moulues, de sucre, de cannelle, et parfois de fleur d'oranger ou de miel, ce qui leur confère un goût riche et aromatique. Ils sont souvent servis avec un filet de miel ou saupoudrés de sucre glace, et accompagnés d'un thé à la menthe pour une expérience gastronomique authentique et gourmande.",
+      "image": ["/images/menu/desert/les cigares.jpg"],
+      "price": [300],
+      "type": "dessert"
+    },
+    {
+      "id": 22,
+      "name": "hamoud blanc",
+      "description": "Hamoud Boualem Blanche est une boisson gazeuse traditionnelle de la célèbre marque algérienne Hamoud Boualem. Cette limonade emblématique, souvent simplement appelée Blanche se distingue par sa clarté et son goût rafraîchissant. Faite à partir d'ingrédients naturels, elle présente un goût subtil de citron avec une touche légèrement sucrée.",
+      "image": [
+        "/images/menu/drinks/whitebighamoud.jpg",
+        "/images/menu/drinks/whitesmallhamoud.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 23,
+      "name": "hamoud Selecto",
+      "description": "Le Selecto est une boisson de l'entreprise algérienne Hamoud Boualem. Il s'agit d'un soda au caramel, souvent assimilé au Coca-Cola en raison de sa couleur malgré une saveur radicalement différente de celle des colas. Si ce bandeau n'est plus pertinent, retirez-le. ",
+      "image": [
+        "/images/menu/drinks/blackbighamoud.jpg",
+        "/images/menu/drinks/blacksmallhamoud.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 24,
+      "name": "hamoud citron",
+      "description": "Hamoud, une limonade aux arômes naturels de citron et sans édulcorant. Hamoud, une limonade aux subtiles huiles essentielles de citron, délicieusement rafraîchissante et sans édulcorant.",
+      "image": [
+        "/images/menu/drinks/citronbighamoud.jpg",
+        "/images/menu/drinks/citronsmallhamoud.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 25,
+      "name": "ifruit abricot",
+      "description": "La boisson iFruit Abricot est une création rafraîchissante qui capture la douceur naturelle et le parfum délicat de l'abricot. Ce soda fruité, légèrement pétillant, offre une explosion de saveurs authentiques à chaque gorgée, avec un équilibre parfait entre sucré et acidulé. Sa texture lisse et son goût juteux en font le compagnon idéal pour se désaltérer lors des journées ensoleillées ou pour apporter une touche fruitée à n'importe quel repas. Emballée dans un design moderne et coloré, la boisson iFruit Abricot est autant un plaisir pour les yeux que pour les papilles.",
+      "image": [
+        "/images/menu/drinks/abricotbigifruit.jpg",
+        "/images/menu/drinks/abricotsmallifruit.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 26,
+      "name": "ifruit orange",
+      "description": "La boisson iFruit Orange est une explosion de saveurs d'agrumes, offrant une expérience rafraîchissante et vivifiante. Ce soda pétillant est infusé de l'essence d'oranges juteuses, capturant à la fois leur douceur naturelle et leur vivacité acidulée. Chaque gorgée transporte les papilles vers un goût ensoleillé et énergisant, parfait pour étancher la soif par temps chaud ou pour accompagner un repas. Présentée dans un emballage vibrant qui reflète la fraîcheur et l'éclat des oranges, la boisson iFruit Orange est le choix idéal pour les amateurs de saveurs fruitées et pétillantes.",
+      "image": [
+        "/images/menu/drinks/orangebigifruit.jpg",
+        "/images/menu/drinks/orangesmallifruit.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 27,
+      "name": "ifruit raisin",
+      "description": "La boisson iFruit Raisin est une fusion pétillante de saveurs riches et sucrées, inspirée par la douceur naturelle des raisins mûrs. Ce soda gazéifié se distingue par son goût intense et fruité, offrant une expérience sensorielle luxuriante avec chaque gorgée. La boisson capture l'essence des grappes de raisin, équilibrant parfaitement leur saveur sucrée avec une touche légèrement acidulée, pour un rafraîchissement sophistiqué et satisfaisant. Avec son emballage élégant et son arôme enivrant, iFruit Raisin est le choix parfait pour ceux qui recherchent une boisson gourmande et pleine de caractère.",
+      "image": [
+        "/images/menu/drinks/raisinsbigifuit.jpg",
+        "/images/menu/drinks/raisinsmallifruit.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 28,
+      "name": "ramy",
+      "description": "Le cocktail Ramy est une boisson pétillante qui marie l'intensité des saveurs fruitées de Ramy avec une touche d'élégance. Chaque gorgée offre un équilibre parfait entre la douceur des fruits et une légère acidité, enrichie par des notes rafraîchissantes d'herbes ou d'épices. Parfait pour les soirées d'été ou les occasions festives, il se prépare généralement avec un mélange de soda Ramy, des fruits frais, et parfois un soupçon de menthe ou d'agrumes pour accentuer les saveurs. Servi bien frais avec des glaçons, le cocktail Ramy est une option délicieuse pour ceux qui cherchent à se désaltérer avec style tout en savourant une boisson originale et vivante.",
+      "image": [
+        "/images/menu/drinks/bigramy.jpg",
+        "/images/menu/drinks/smallramy.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 29,
+      "name": "N'gaous",
+      "description": "La boisson N'gaous est une infusion rafraîchissante qui capture les saveurs et les arômes de l'Algérie. Cette boisson est préparée en infusant des fruits frais, tels que des dattes ou des agrumes locaux, avec des herbes aromatiques comme la menthe ou la verveine. Le mélange est légèrement sucré et peut être servi glacé pour une expérience désaltérante. Parfait pour accompagner les repas ou pour se rafraîchir lors des journées chaudes, le N'gaous allie les saveurs fruitées à une touche d'herbes fraîches, créant ainsi une boisson à la fois authentique et revitalisante.",
+      "image": [
+        "/images/menu/drinks/Ngaousbig.jpg",
+        "/images/menu/drinks/Ngaoussmall.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 30,
+      "name": "orangina",
+      "description": "Orangina est une boisson gazeuse au goût d'orange, reconnue pour sa texture légèrement trouble due aux particules de pulpe d'orange en suspension. Avec un mélange de jus d'orange concentré et d'eau gazeuse, elle offre un goût fruité, acidulé et rafraîchissant. Servie bien fraîche, elle est souvent présentée dans une bouteille en forme d'orange, ajoutant une touche distinctive à cette boisson pétillante.",
+      "image": [
+        "/images/menu/drinks/bigorangina.jpg",
+        "/images/menu/drinks/smallorangina.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 31,
+      "name": "rouiba",
+      "description": "Rouiba propose des boissons rafraîchissantes, incluant des jus de fruits naturels et des sodas. Les jus sont faits à partir de fruits frais, offrant des saveurs authentiques comme l'orange et la pomme. Les boissons gazeuses de Rouiba sont légèrement pétillantes et fruitées, idéales pour se désaltérer.",
+      "image": [
+        "/images/menu/drinks/bigrouiba.jpg",
+        "/images/menu/drinks/smallrouiba.jpg"
+      ],
+      "price": [200, 100],
+      "type": "boissons"
+    },
+    {
+      "id": 32,
+      "name": "café",
+      "description": "Au sein d'un restaurant traditionnel, le café est préparé avec soin pour compléter l'expérience culinaire. Servi chaud, il est généralement offert dans des tasses élégantes, parfois accompagnées de petites douceurs comme des biscuits ou des pâtisseries. Le café peut être préparé de manière classique, comme un espresso fort et riche, ou sous d'autres formes telles que le café filtre ou le cappuccino, selon les préférences. La présentation peut varier, mais l'accent est souvent mis sur l'authenticité et la qualité des grains de café utilisés. Ce moment convivial est idéal pour conclure un repas avec une note chaleureuse et réconfortante, tout en permettant aux convives de prolonger leur expérience gastronomique.",
+      "image": ["/images/menu/drinks/café.jpg"],
+      "price": [100],
+      "type": "boissons"
+    },
+    {
+      "id": 33,
+      "name": "thé",
+      "description": "Au sein d'un restaurant traditionnel, le thé est une boisson servie avec élégance et soin. Préparé avec des feuilles de thé de qualité, il peut être présenté dans une variété de styles, allant du thé noir classique au thé vert, en passant par des mélanges aromatiques comme le thé à la menthe ou le thé aux épices. Le thé est souvent accompagné de petites douceurs ou de pâtisseries pour enrichir l'expérience.",
+      "image": ["/images/menu/drinks/thé.jpg"],
+      "price": [100],
+      "type": "boissons"
+    }
+  ]
+}

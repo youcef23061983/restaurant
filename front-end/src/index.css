@@ -51,7 +51,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+label {
   font-family: "Didot Italic", serif;
   text-transform: capitalize;
   font-weight: lighter;
@@ -316,6 +317,65 @@ a {
 .red {
   color: #cc0000;
 }
+.reservationForm {
+  display: flex;
+  justify-items: center;
+  margin: 1rem;
+  padding: 1rem;
+  gap: 1rem;
+}
+.timesContainer {
+  width: 60rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+.timeButton {
+  border: 0.3rem solid white;
+  border-radius: 0.3rem;
+  color: black;
+}
+
+.timeSelected {
+  color: white;
+  border-color: transparent;
+  background-color: var(--clr-primary-header-color);
+}
+.cartResult {
+  margin: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.7rem var(--clr-primary-header-color);
+  padding: 1rem;
+}
+.cartResult > h3 {
+  font-size: 1.9rem;
+  font-weight: 100;
+}
+.cartResult > h3,
+button {
+  margin-bottom: 0.5rem;
+}
+.cartCheck {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}
+.cartDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+  box-shadow: 0.2rem 0.2rem 0.7rem var(--clr-primary-header-color);
+  padding: 1rem;
+}
+.cartAmount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cartImg {
+  height: 8rem;
+}
 @media screen and (min-width: 336px) {
   h2 {
     font-size: 2.4rem;
@@ -393,6 +453,15 @@ a {
   .mealContainer {
     display: flex;
     flex-direction: column;
+  }
+  .reservationForm {
+    flex-direction: column;
+  }
+  .cartBtn {
+    color: var(--clr-secondary-header-color);
+    border: 0.1rem solid var(--clr-secondary-header-color);
+    background-color: transparent;
+    padding: 0.2rem;
   }
 }
 @media screen and (min-width: 786px) {
@@ -479,6 +548,15 @@ a {
   }
   .typeBtn {
     font-size: 2rem;
+  }
+  .reservationForm {
+    flex-direction: row;
+  }
+  .cartBtn {
+    padding: 0.5rem 1.2rem;
+    margin: 1rem;
+    font-size: 1rem;
+    border-radius: 0.2rem;
   }
 }
 

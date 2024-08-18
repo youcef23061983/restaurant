@@ -6,7 +6,8 @@
       "description": "Le couscous est d'une part une semoule de blé dur préparée à l'huile d'olive et d'autre part, une spécialité culinaire issue de la cuisine berbère, à base de couscous, de légumes, d'épices, d'huile d'olive et de viande ou de poisson.",
       "image": ["/images/menu/meals/kouskous.jpg"],
       "price": [2000],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "description": "Ce couscous noir qu'on ne trouve qu'en Algérie est peu connu en Tunisie. Il est fabriqué avec du blé dur ayant fermenté durant trois ans sous terre. Sa cuisson se caractérise par des relents assez forts mais son goût est des plus délicats.",
       "image": ["/images/menu/meals/kouskousnoirpoisson.jpg"],
       "price": [1500],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "description": "L'osban est un plat cuisiné à base de panse de mouton (dite kercha) farcie avec des abats de mouton finement découpés : intestins, cœur, foie, poumon et m’jebna (la partie de la graisse de mouton appelée crépine)2. À cette composition, du riz et des pois chiches sont ajoutés. La farce est assaisonnée d'oignon et de coriandre hachés, de sel, de poivre noir, de paprika et de tomate concentrée1 et, facultativement, de harissa.",
       "image": ["/images/menu/meals/assbane.jpg"],
       "price": [2200],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 4,
@@ -30,7 +33,8 @@
       "description": "La chtitha bouzelouf est une recette traditionnelle algéroise. Appelée également kebda mchermla, il s'agit simplement d'abats de mouton cuisinés en sauce à base d'ail et de tomates. Traditionnellement, le chtitha se sert sur les tablées lors de la fête de l'Aïd.",
       "image": ["/images/menu/meals/bouzaloufe.jpg"],
       "price": [1800],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 5,
@@ -38,7 +42,8 @@
       "description": "Le tajine douara, ou dowara, est une recette ancestrale de la cuisine algérienne. Ce plat riche aux tripes d'agneau et aux légumes est une recette emblématique qui doit être toujours préparer durant l'Aïd el-Kebir",
       "image": ["/images/menu/meals/douwara.jpg"],
       "price": [1800],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 6,
@@ -46,7 +51,8 @@
       "description": "Le riz au poulet hainanais est un plat composé de succulent poulet blanc poché coupé en bouchées et servi sur du riz parfumé avec un peu de sauce soja légère . Le plat est garni de brins de feuilles de coriandre et d'huile de sésame, et accompagné d'une trempette à l'ail et au piment.",
       "image": ["/images/menu/meals/elrouzebeljaje.jpg"],
       "price": [2000],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 7,
@@ -54,7 +60,8 @@
       "description": "Le mtewem ou tajine mtewem est un plat algérien, et plus précisément algérois, fait à base de boulettes de viande hachée, de morceaux de poulet ou de viande d'agneau et d'amandes. Sa sauce est préparée avec un oignon râpé et beaucoup d'ail, comme son nom l'indique.",
       "image": ["/images/menu/meals/methoume.jpg"],
       "price": [2500],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 8,
@@ -62,7 +69,8 @@
       "description": "La rechta est un plat à base de pâtes fraîches artisanales, coupées en lanières fines, typique de l'est du Maghreb. Elle est en particulier le plat symbolique de la cuisine algéroise.",
       "image": ["/images/menu/meals/rachta.jpg"],
       "price": [2000],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 9,
@@ -70,7 +78,8 @@
       "description": "La trida est un plat traditionnel algérien, originaire du nord-est du pays. Elle est préparée à base de pâtes très fines et carrées faites artisanalement, de poulet, de boulettes de viande, de pois chiches et d'œufs durs, le tout accompagné d'une sauce blanche.",
       "image": ["/images/menu/meals/trida.jpg"],
       "price": [2000],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 10,
@@ -78,7 +87,8 @@
       "description": "La chakhchoukha est un mets de fête se composant de pâte de semoule émiettée, cuite à la poêle, arrosée de sauce tomate rouge à la viande, épicée, de pois chiches et, dans quelques régions, de courgettes, de carottes et de navets, de fèves ou encore de pommes de terre.",
       "image": ["/images/menu/meals/shakhshoukha.jpg"],
       "price": [2000],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 11,
@@ -86,7 +96,8 @@
       "description": "La chorba, chorwa, chourpa, chorpa, chorpo, sorpa, chaṛḇa, est une soupe traditionnelle d'Afrique du Nord, des Balkans, de l'Europe de l'Est, de l'Asie centrale, du Moyen-Orient et de l'Asie du Sud.",
       "image": ["/images/menu/meals/shourba.jpg"],
       "price": [1700],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 12,
@@ -94,7 +105,8 @@
       "description": "Ce plat se compose de boulettes de semoule, de forme ronde ou ovale, cuites dans une sauce rouge piquante, parfumée à la coriandre et à la menthe. Ces boules sont préparées avec de la semoule de blé (ou très rarement d'orge), d'huile, d'oignons et d'épices, un peu de sauce ainsi que beaucoup de coriandre et de menthe.",
       "image": ["/images/menu/meals/tikarbanine.jpg"],
       "price": [1300],
-      "type": "menu"
+      "type": "menu",
+      "amount": 1
     },
     {
       "id": 13,
@@ -102,7 +114,8 @@
       "description": "Le baklava est un dessert traditionnel commun aux peuples des anciens empires ottoman et perse. On trouve également ce dessert dans plusieurs régions telles que le Caucase, les Balkans, le Moyen-Orient et l'Afrique du Nord.",
       "image": ["/images/menu/desert/Baklava.jpg"],
       "price": [300],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 14,
@@ -110,7 +123,8 @@
       "description": "Le lham hlou, lham lahlou, ou tadjine lahlou, qui veut dire « viande sucrée » ou « tadjne doux », est un plat sucré algérien, fait à base de viande et de pruneaux principalement, avec éventuellement des abricots et décoré de raisins secs et d'amandes dans un sirop de sucre et d'eau de fleur d'oranger.",
       "image": ["/images/menu/desert/Lham hlou.jpg"],
       "price": [1500],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 15,
@@ -118,7 +132,8 @@
       "description": "Kalb el louz ou qalb el louz est une pâtisserie algérienne, originaire de Constantine. Cette pâtisserie est une des plus populaires du pays. Elle est très largement consommée durant les soirées du mois sacré du ramadan avec un thé à la menthe ou du thé noir aux clous de girofle ou du café.",
       "image": ["/images/menu/desert/Kalb el louz.jpg"],
       "price": [200],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 16,
@@ -126,7 +141,8 @@
       "description": "Le katayef, plus rarement transcrit qatayef en français ou atayef, est une pâtisserie levantine à base de pâte à crêpe, farcie de crème de lait, de pistache ou de noix.",
       "image": ["/images/menu/desert/Qatayef.jpg"],
       "price": [200],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 17,
@@ -134,7 +150,8 @@
       "description": "Le baghrir, ghrayef, khringo, tibouâjajin, appelé aussi en français mille trous, est une crêpe répandue au Maghreb préparée à base de semoule ou de farine, de levure et de sel, servie chaude, généralement imbibée de beurre et de miel.",
       "image": ["/images/menu/desert/Baghrir.jpg"],
       "price": [150],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 18,
@@ -142,7 +159,8 @@
       "description": "Le makroud ou makrout, également orthographié maqroudh ou maqrouth, est une pâtisserie maghrébine, à base de semoule de blé et de pâte de dattes, reconnaissable à sa forme en losange. C'est une pâtisserie très populaire au Maghreb et également à Malte.",
       "image": ["/images/menu/desert/Makroud.jpg"],
       "price": [150],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 19,
@@ -150,7 +168,8 @@
       "description": "La chebakia (ou chbakia), appelée également griwech (aussi griouech ou griwèche) en Algérie ou m'kharqa (ou l'mkharqa) au Maroc, est une pâtisserie de forme roulée originaire du Maghreb, à base de farine, de matière grasse, de miel et d'eau de fleur d'oranger.",
       "image": ["/images/menu/desert/griwech.jpg"],
       "price": [150],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 20,
@@ -158,7 +177,8 @@
       "description": "La zlabia, ou zelabia, parfois sous la forme jalebi, est une confiserie de la cuisine orientale traditionnelle. C'est une pâtisserie frite intermédiaire entre un gâteau et une confiserie. On la retrouve au Maghreb, en Afrique de l'Est, au Moyen-Orient, dans le sous-continent indien, en Asie du Sud.",
       "image": ["/images/menu/desert/Zalabiyeh.jpg"],
       "price": [200],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 21,
@@ -166,7 +186,8 @@
       "description": "Les cigares au dessert sont une spécialité sucrée qui évoque l'élégance et le raffinement de la pâtisserie orientale. Ces délices croustillants, en forme de rouleaux fins, sont faits de feuilles de brick délicatement dorées au four ou frites, et garnis d'une farce parfumée. Traditionnellement, la farce est composée d'amandes moulues, de sucre, de cannelle, et parfois de fleur d'oranger ou de miel, ce qui leur confère un goût riche et aromatique. Ils sont souvent servis avec un filet de miel ou saupoudrés de sucre glace, et accompagnés d'un thé à la menthe pour une expérience gastronomique authentique et gourmande.",
       "image": ["/images/menu/desert/les cigares.jpg"],
       "price": [300],
-      "type": "dessert"
+      "type": "dessert",
+      "amount": 1
     },
     {
       "id": 22,
@@ -177,7 +198,8 @@
         "/images/menu/drinks/whitesmallhamoud.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 23,
@@ -188,7 +210,8 @@
         "/images/menu/drinks/blacksmallhamoud.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 24,
@@ -199,7 +222,8 @@
         "/images/menu/drinks/citronsmallhamoud.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 25,
@@ -210,7 +234,8 @@
         "/images/menu/drinks/abricotsmallifruit.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 26,
@@ -221,7 +246,8 @@
         "/images/menu/drinks/orangesmallifruit.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 27,
@@ -232,7 +258,8 @@
         "/images/menu/drinks/raisinsmallifruit.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 28,
@@ -243,7 +270,8 @@
         "/images/menu/drinks/smallramy.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 29,
@@ -254,7 +282,8 @@
         "/images/menu/drinks/Ngaoussmall.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 30,
@@ -265,7 +294,8 @@
         "/images/menu/drinks/smallorangina.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 31,
@@ -276,7 +306,8 @@
         "/images/menu/drinks/smallrouiba.jpg"
       ],
       "price": [200, 100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 32,
@@ -284,7 +315,8 @@
       "description": "Au sein d'un restaurant traditionnel, le café est préparé avec soin pour compléter l'expérience culinaire. Servi chaud, il est généralement offert dans des tasses élégantes, parfois accompagnées de petites douceurs comme des biscuits ou des pâtisseries. Le café peut être préparé de manière classique, comme un espresso fort et riche, ou sous d'autres formes telles que le café filtre ou le cappuccino, selon les préférences. La présentation peut varier, mais l'accent est souvent mis sur l'authenticité et la qualité des grains de café utilisés. Ce moment convivial est idéal pour conclure un repas avec une note chaleureuse et réconfortante, tout en permettant aux convives de prolonger leur expérience gastronomique.",
       "image": ["/images/menu/drinks/café.jpg"],
       "price": [100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     },
     {
       "id": 33,
@@ -292,7 +324,8 @@
       "description": "Au sein d'un restaurant traditionnel, le thé est une boisson servie avec élégance et soin. Préparé avec des feuilles de thé de qualité, il peut être présenté dans une variété de styles, allant du thé noir classique au thé vert, en passant par des mélanges aromatiques comme le thé à la menthe ou le thé aux épices. Le thé est souvent accompagné de petites douceurs ou de pâtisseries pour enrichir l'expérience.",
       "image": ["/images/menu/drinks/thé.jpg"],
       "price": [100],
-      "type": "boissons"
+      "type": "boissons",
+      "amount": 1
     }
   ]
 }

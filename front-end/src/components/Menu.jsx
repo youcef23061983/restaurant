@@ -11,8 +11,10 @@ const Menu = () => {
   const data = useLoaderData();
   const [searchParams, setSearchParams] = useSearchParams();
   const menuType = searchParams.get("type");
-  console.log(searchParams.toString());
   // localStorage.removeItem("loggedin");
+  useEffect(() => {
+    document.title = "Menu";
+  }, []);
 
   const menuFiletr = menuType
     ? data.filter((meal) => meal.type === menuType)

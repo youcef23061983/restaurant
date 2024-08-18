@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
 import mealDetail from "/images/landingimage/mealDetail.jpg";
 import { getMeals } from "../data/API";
+import { AppContext } from "../data/AppProvider";
 export const loader = async ({ params }) => {
   return getMeals(params.id);
 };
@@ -9,17 +10,13 @@ export const loader = async ({ params }) => {
 const MealDetail = () => {
   const location = useLocation();
   const data = useLoaderData();
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const { handleToggleSize, isSwitchOn, addTocart } = useContext(AppContext);
 
-  const { name, description, image, price, type } = data;
-
-  const handleToggleSize = () => {
-    setIsSwitchOn((prevState) => !prevState);
-  };
+  const { name, description, image, price, type, id } = data;
 
   const displayImage = isSwitchOn && image ? image[1] : image ? image[0] : null;
   const displayPrice = isSwitchOn && price ? price[1] : price ? price[0] : null;
-
+  const displayTitle = isSwitchOn ? "get big" : "get small";
   return (
     <div>
       <img src={mealDetail} alt="" className="landingImg" />
@@ -46,10 +43,10 @@ const MealDetail = () => {
           </p>
           {price && price.length > 1 ? (
             <button className="typeBtn" onClick={handleToggleSize}>
-              {isSwitchOn ? "Get Big" : "Get Small"}
+              {displayTitle}
             </button>
           ) : null}
-          <Link className="typeBtn" to="/cart">
+          <Link className="typeBtn" to="/cart" onClick={() => addTocart(id)}>
             Ajouter au panier
           </Link>
           <Link

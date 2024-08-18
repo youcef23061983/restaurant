@@ -8,6 +8,7 @@ const Ordre = () => {
     const [matches, setMatches] = useState(false);
 
     useEffect(() => {
+      document.title = "Ordre";
       const media = window.matchMedia(query);
       if (media.matches !== matches) {
         setMatches(media.matches);

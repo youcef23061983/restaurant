@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../data/AppProvider";
 
 const Meal = ({ meal, searchParams }) => {
+  const { addTocart } = useContext(AppContext);
   const { name, image, price, id } = meal;
 
   return (
@@ -14,7 +16,7 @@ const Meal = ({ meal, searchParams }) => {
 
       <h3>name :{name}</h3>
       <h3>price :{price[0]} D</h3>
-      <Link to="/cart" className="linkmenu">
+      <Link to="/cart" className="linkmenu" onClick={() => addTocart(id)}>
         add to Cart
       </Link>
     </div>

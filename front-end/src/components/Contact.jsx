@@ -3,6 +3,9 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 
 const Contact = () => {
+  useEffect(() => {
+    document.title = "Contact";
+  }, []);
   const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(false);
 
@@ -58,7 +61,6 @@ const Contact = () => {
           }}
           className="articleHeader"
         >
-          {" "}
           Contactez-Nous
         </motion.h2>
         <motion.p
@@ -68,7 +70,6 @@ const Contact = () => {
           }}
           className="articleParagraph"
         >
-          {" "}
           Nous serions ravis de vous accueillir chez El Bahja, où vous pourrez
           découvrir les saveurs authentiques de la cuisine algérienne. Pour
           toute question, réservation ou information supplémentaire, n'hésitez

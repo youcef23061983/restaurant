@@ -42,6 +42,9 @@ const Login = () => {
   const message = useLoaderData();
   const navigation = useNavigation();
   const errorMessage = useActionData();
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
 
   return (
     <div>

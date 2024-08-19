@@ -6,6 +6,7 @@ import {
   useNavigation,
 } from "react-router-dom";
 import login from "/images/landingimage/login.jpg";
+import { useEffect } from "react";
 export function loader({ request }) {
   return new URL(request.url).searchParams.get("message");
 }

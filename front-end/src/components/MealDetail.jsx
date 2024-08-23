@@ -42,10 +42,11 @@ const MealDetail = () => {
             {displayPrice} D
           </p>
           {price && price.length > 1 ? (
-            <button className="typeBtn" onClick={handleToggleSize}>
+            <button className="typeBtn m-auto" onClick={handleToggleSize}>
               {displayTitle}
             </button>
           ) : null}
+
           <Link className="typeBtn" to="/cart" onClick={() => addTocart(id)}>
             Ajouter au panier
           </Link>

@@ -77,16 +77,16 @@ const Cart = () => {
         ))}
       </div>
       <div className="cartResult">
-        <h3>Amount: {amount}</h3>
-        <h3>Subtotal: {total} $</h3>
-        <h3>Tax: {tax} $</h3>
-        <h3>Total: {totalAll} $</h3>
+        <h3>Montant : {amount}</h3>
+        <h3>Sous-total : {total} D</h3>
+        <h3>Taxe : {tax} D</h3>
+        <h3>Total : {totalAll} D</h3>
         <div className="cartCheck">
           <Link onClick={clearCart} className="linkmenu">
-            Clear All
+            Tout effacer
           </Link>
-          <Link className="linkmenu" to="/payment" onClick={updatedCart}>
-            Proceed to Checkout
+          <Link className="linkmenu" to="/information" onClick={updatedCart}>
+            Passer à la caisse
           </Link>
         </div>
       </div>

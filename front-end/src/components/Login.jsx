@@ -1,5 +1,6 @@
 import {
   Form,
+  Link,
   redirect,
   useActionData,
   useLoaderData,
@@ -31,7 +32,7 @@ export async function action({ request }) {
     const email = formData.get("email");
     const password = formData.get("password");
     const data = await fakeLoginUser({ email, password });
-    console.log(data);
+    // console.log(email, password);
     localStorage.setItem("loggedin", true);
     return redirect("/cart");
   } catch (error) {
@@ -62,6 +63,9 @@ const Login = () => {
             {navigation.state === "submitting" ? "Logging in..." : "Log in"}
           </button>
         </Form>
+        <Link className="selected w-500px" to="/signup">
+          Créer un Compte
+        </Link>
       </div>
     </div>
   );

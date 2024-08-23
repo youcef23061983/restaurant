@@ -17,7 +17,7 @@ const Meal = ({ meal, searchParams }) => {
       <h3>name :{name}</h3>
       <h3>price :{price[0]} D</h3>
       <Link to="/cart" className="linkmenu" onClick={() => addTocart(id)}>
-        add to Cart
+        Ajouter au panier
       </Link>
     </div>
   );

@@ -108,8 +108,9 @@ const Reservation = () => {
           vous garantissons une expérience culinaire inoubliable. Pour assurer
           votre confort et vous offrir le meilleur service possible, nous vous
           recommandons de réserver à l'avance. Faites votre réservation en ligne
-          ou par téléphone, et laissez-nous vous transporter au cœur de la
-          tradition culinaire algérienne.
+          ou par téléphone:(213) 00/00/00/00, et laissez-nous vous transporter
+          au cœur de la tradition culinaire algérienne. Pour les groupes de neuf
+          personnes ou plus, veuillez envoyer un e-mail à ----@------.com.
         </motion.p>
       </div>
       <div className="reservationForm">
@@ -161,7 +162,7 @@ const Reservation = () => {
             </div>
           ) : null}
           {date.capacity ? (
-            <button className="mt-3 typeBtn">trouvez la table</button>
+            <button className="mt-3 linkmenu">trouvez la table</button>
           ) : null}
         </div>
       </div>

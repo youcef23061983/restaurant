@@ -3,6 +3,23 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 
 const Contact = () => {
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("service_vgkozvc", "template_sv5btsr", form.current, {
+        publicKey: import.meta.env.VITE_CONTACT_PUBLIC_KEY,
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
   useEffect(() => {
     document.title = "Contact";
   }, []);
@@ -79,6 +96,57 @@ const Contact = () => {
           visitant notre restaurant. Nous avons hâte de vous servir et de
           partager avec vous les délices de notre tradition gastronomique.
         </motion.p>
+      </div>
+      <div className="form">
+        <div className="touches">
+          <h2 className="articleHeader mb-32">our information</h2>
+
+          <p>
+            <span className="mealSpan">Address:</span>
+            ------
+          </p>
+          <p>
+            <span className="mealSpan">Phone:</span>
+            (213) ------
+          </p>
+          <p>
+            <span className="mealSpan">Email:</span>
+            ------@--.com
+          </p>
+          <p>
+            <span className="mealSpan">Address:</span>
+            ------
+          </p>
+        </div>
+        <div className="loginContainer">
+          <form ref={form} onSubmit={sendEmail}>
+            <label htmlFor="name" className="inputLabel">
+              First Name:
+              <input type="text" name="ame" id="name" className="input" />
+            </label>
+            <br />
+
+            <label htmlFor="email" className="inputLabel">
+              Your Email:
+              <input type="email" name="email" id="email" className="input" />
+            </label>
+            <br />
+            <label htmlFor="comment" className="inputLabel">
+              Your Comment:
+              <textarea
+                name="comment"
+                id="comment"
+                style={{ height: "20rem" }}
+                className="input"
+              />
+            </label>
+            <br />
+
+            <button onClick="submit" className="linkmenu">
+              Submit:
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );

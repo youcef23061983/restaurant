@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import loc from "/images/landingimage/location.jpg";
 
 const Location = () => {

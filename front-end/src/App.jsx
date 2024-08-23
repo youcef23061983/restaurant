@@ -23,6 +23,13 @@ import Login, {
   action as loginAction,
 } from "./components/Login";
 import RequiredAuth from "./components/RequiredAuth";
+import Information from "./components/Information";
+import Payment from "./components/Payment";
+import Bill from "./components/bill";
+import Gallery, { loader as galleryLoader } from "./components/Gallery";
+import Testimonial from "./components/Testimonial";
+import Signup from "./components/Signup";
+import Google from "./components/Google";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} errorElement={<Error />}>
@@ -30,6 +37,13 @@ const router = createBrowserRouter(
       <Route />
       <Route path="about" element={<About />} />
       <Route path="contact" element={<Contact />} />
+      <Route path="information" element={<Information />} />
+      <Route path="payment" element={<Payment />} />
+      <Route path="Bill" element={<Bill />} />
+      <Route path="testimonial" element={<Testimonial />} />
+      <Route path="gallery" element={<Gallery />} loader={galleryLoader} />
+      <Route path="signup" element={<Signup />} />
+      <Route path="google" element={<Google />} />
       <Route
         path="cart"
         element={<Cart />}

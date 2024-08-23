@@ -1,78 +1,127 @@
-import React, { useEffect } from "react";
+import { useScroll, useTransform, motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import notrehistoire from "/images/landingimage/notrehistoire.jpg";
 
 const About = () => {
   useEffect(() => {
     document.title = "About";
   }, []);
+  const useMediaQuery = (query) => {
+    const [matches, setMatches] = useState(false);
+
+    useEffect(() => {
+      const media = window.matchMedia(query);
+      if (media.matches !== matches) {
+        setMatches(media.matches);
+      }
+
+      const listener = () => {
+        setMatches(media.matches);
+      };
+
+      if (typeof media.addEventListener === "function") {
+        media.addEventListener("change", listener);
+      } else {
+        media.addListener(listener);
+      }
+
+      return () => {
+        if (typeof media.removeEventListener === "function") {
+          media.removeEventListener("change", listener);
+        } else {
+          media.removeListener(listener);
+        }
+      };
+    }, [matches, query]);
+
+    return matches;
+  };
+  const isMediumScreen = useMediaQuery("(min-width: 768px)");
+
+  const ref = useRef();
+  const { scrollYProgress: scrollYProgress1 } = useScroll({
+    ref: ref,
+    offset: ["0 1", isMediumScreen ? "0.2 0" : "0.05 0"],
+  });
+  const scrollOpacity = useTransform(
+    scrollYProgress1,
+    [0, 0.5, 1],
+    [0, 0.3, 1]
+  );
+  const scrollparagraph = useTransform(scrollYProgress1, [0, 1], [-500, 0]);
+  const scrollHeader = useTransform(scrollYProgress1, [0, 1], [500, 0]);
   return (
-    <div>
-      <p>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis
-        neque harum quisquam praesentium autem nobis, consequuntur labore, eaque
-        deleniti accusantium cumque deserunt iusto molestiae? Vitae, sapiente,
-        amet quidem rem deserunt distinctio dicta eos minus magni ipsa esse ab a
-        consectetur blanditiis, impedit nesciunt autem sequi! Maiores, molestiae
-        aliquid laudantium commodi, est mollitia expedita earum quo debitis
-        similique aperiam fuga odio illo natus sint quibusdam numquam impedit?
-        Odit laboriosam iste suscipit quibusdam quos odio, sequi quasi voluptas
-        dignissimos, veritatis ea! Blanditiis facere dolorum exercitationem
-        necessitatibus minus neque praesentium. Qui nesciunt ut, sit rem saepe
-        in, alias veniam quos minima iusto molestiae obcaecati. Architecto
-        earum, provident doloremque ullam a vel itaque iste, facere officiis
-        corporis ea, ducimus sapiente laudantium fugiat voluptate omnis debitis.
-        Libero, molestias dolorum? Tempora laudantium neque possimus aut nulla
-        aliquam alias quod delectus sit accusamus, praesentium vero blanditiis
-        explicabo in rem doloribus nihil ex tenetur esse suscipit natus eius
-        minus. Delectus cumque possimus officiis praesentium similique autem
-        repellat excepturi, a harum facilis animi distinctio sunt rerum labore
-        nam? Possimus saepe laborum in, placeat, eius aliquam quos voluptas sunt
-        quisquam asperiores cum provident voluptates corporis dolores impedit,
-        vitae sequi fugit hic illo porro ipsa blanditiis ipsam est esse!
-        Accusantium enim, maxime eveniet magni animi alias optio earum, ut aut
-        labore quo molestias voluptate sit excepturi cum illum. Ipsum officiis
-        optio soluta accusamus enim nesciunt sequi hic consectetur, voluptatibus
-        praesentium sed eius sint quaerat omnis incidunt alias quod tempore
-        eligendi nam commodi quibusdam. Aperiam adipisci soluta dolores, esse
-        quos ratione, maxime saepe quas quod perferendis sint voluptates
-        incidunt similique distinctio ipsa! Mollitia labore iusto repellat
-        laboriosam earum neque minima veniam nobis, vitae error dignissimos
-        inventore pariatur, accusamus accusantium? Aliquid animi laudantium
-        architecto tenetur fugiat minus autem, illum excepturi, quos quod ipsum
-        rem voluptatem id ullam, odit consequatur omnis consectetur assumenda
-        laborum? Cum non possimus laudantium iure minima cumque. Exercitationem
-        atque quod veritatis quis. Sint architecto ipsum quos reprehenderit
-        nesciunt quam nisi consectetur dolore explicabo. Exercitationem, cum,
-        iusto fuga sequi delectus sit beatae qui earum ea quibusdam, quidem sunt
-        molestiae pariatur rem facere officia enim minima aliquid dignissimos
-        assumenda eum! Corrupti molestias ducimus fuga voluptatibus amet sunt
-        molestiae voluptas maiores, veniam odit doloremque inventore minus,
-        eligendi nesciunt sapiente libero harum doloribus consequatur? Quod
-        minus autem est, reprehenderit iure enim qui quis distinctio dolores
-        dolorum quas id corrupti ab iste numquam temporibus omnis provident
-        assumenda optio magnam nihil in porro. Ipsa quia velit voluptatibus
-        pariatur veniam tempora odio eius? Placeat, accusamus a? Temporibus quis
-        autem pariatur cupiditate ipsum, asperiores debitis magnam aut vel quo
-        aspernatur consequuntur illum excepturi quas assumenda eveniet illo
-        minima nam distinctio consectetur. Modi soluta laudantium, doloribus
-        molestiae quas veritatis a. Accusantium repellat rerum obcaecati libero
-        dolore illum, consequuntur error dolorum animi. Magnam iure harum nam
-        sit eos dolor, expedita error deserunt illo dolore doloremque autem!
-        Modi facilis, eveniet, ipsam possimus accusamus architecto molestias
-        laborum voluptates voluptatem ex in ut quo ab maxime quisquam
-        accusantium praesentium dolores! Id rem, commodi error sunt neque
-        officia! Eaque quisquam minus natus tempora itaque quis assumenda
-        quaerat molestiae, officia a vero nihil. Culpa tempore dolores suscipit
-        quod, veniam quos veritatis, similique quaerat fugit atque ipsa minima
-        asperiores delectus, vero quae cupiditate ut quia deleniti nulla! Sit
-        eius eos aut possimus saepe, sint nihil esse repellendus quo asperiores
-        facere, magni quas. Perferendis rerum in ipsa qui possimus, ratione,
-        illum tempora explicabo aperiam suscipit est quam dignissimos. Illo, ut
-        fugiat minima doloremque beatae laborum corporis porro deleniti neque
-        vero quis nam facere ab praesentium harum eligendi quos veniam quasi
-        ipsam accusantium odit assumenda voluptate hic! Sunt libero error odio
-        ipsam itaque aut architecto ab, officia perferendis!
-      </p>
-    </div>
+    <>
+      <img src={notrehistoire} alt="" className="landingImg" />
+      <div ref={ref} className="article">
+        <motion.h2
+          style={{
+            opacity: scrollOpacity,
+            x: scrollHeader,
+          }}
+          className="articleHeader"
+        >
+          El Bahja: Une Histoire d'Authenticité et de Savoir-Faire Algérien
+          Depuis 1902
+        </motion.h2>
+        <motion.p
+          style={{
+            opacity: scrollOpacity,
+            x: scrollparagraph,
+          }}
+          className="articleParagraph"
+        >
+          Depuis plus d'un siècle, El Bahja incarne l'âme culinaire de
+          l'Algérie, perpétuant les traditions gastronomiques avec passion et
+          excellence. Fondé en 1902 au cœur d'Alger, ce restaurant a su
+          conquérir le cœur des amateurs de cuisine authentique grâce à un
+          savoir-faire transmis de génération en génération.
+          <br />
+          <br />
+          L'histoire d'El Bahja commence dans une modeste ruelle d'Alger, où son
+          fondateur, un maître cuisinier dévoué à son art, a ouvert les portes
+          de ce qui allait devenir une véritable institution. Sa vision était
+          simple : offrir aux habitants de la ville une cuisine qui célèbre la
+          richesse des saveurs et des traditions algériennes. Dès ses débuts, le
+          restaurant a attiré une clientèle fidèle, séduite par la qualité des
+          plats et l’ambiance chaleureuse des lieux.
+          <br />
+          <br />
+          Au fil des décennies, El Bahja a su préserver l'authenticité de sa
+          cuisine tout en s'adaptant aux goûts et aux attentes d'une clientèle
+          toujours plus exigeante. Les recettes, soigneusement élaborées,
+          respectent les techniques ancestrales tout en intégrant les meilleurs
+          ingrédients locaux. Du couscous parfumé aux épices fines, aux tajines
+          mijotés avec amour, chaque plat raconte l'histoire d'un pays riche en
+          traditions.
+          <br />
+          <br />
+          Le succès d'El Bahja ne s'est pas limité à Alger. Aujourd'hui, le
+          restaurant compte 35 succursales à travers tout le pays, de la
+          Méditerranée aux confins du Sahara. Chaque établissement, bien que
+          moderne dans son agencement, reste fidèle à l’esprit d’origine,
+          offrant à ses clients une expérience culinaire qui est à la fois un
+          voyage dans le temps et une célébration des saveurs d’Algérie.
+          <br />
+          <br />
+          Chaque jour, les équipes d'El Bahja perpétuent cet héritage, avec un
+          engagement sans faille envers la qualité et l'authenticité. Les chefs,
+          formés selon les méthodes traditionnelles, préparent les plats avec
+          une passion qui se ressent dans chaque bouchée. Que ce soit pour un
+          repas familial, une célébration ou un simple déjeuner entre amis, El
+          Bahja est le lieu où l'on se retrouve pour partager bien plus qu'un
+          repas : une véritable immersion dans l'âme de la cuisine algérienne.
+          <br />
+          <br />
+          Ainsi, El Bahja ne se contente pas de nourrir ses clients, il leur
+          offre une part de l'histoire de l'Algérie, un héritage culinaire
+          préservé avec soin depuis plus de 120 ans. Avec ses 35 branches à
+          travers le pays, El Bahja continue de grandir tout en restant fidèle à
+          ses racines, rendant hommage à la richesse de la culture culinaire
+          algérienne, une assiette à la fois.
+        </motion.p>
+      </div>
+    </>
   );
 };
 

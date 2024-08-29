@@ -50,7 +50,7 @@ const Signup = () => {
         <h2 className="articleHeader">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <label htmlFor="username" className="inputLabel">
-            Username:
+            nom d'utilisateur:
             <input
               type="text"
               name="username"
@@ -74,7 +74,7 @@ const Signup = () => {
           </label>
           <br />
           <label htmlFor="password" className="inputLabel">
-            Password:
+            mot de passe:
             <input
               type="password"
               name="password"
@@ -86,7 +86,7 @@ const Signup = () => {
           </label>
           <br />
           <label htmlFor="confirmPassword" className="inputLabel">
-            Confirm Password:
+            confirmer le mot de passe:
             <input
               type="password"
               name="confirmPassword"

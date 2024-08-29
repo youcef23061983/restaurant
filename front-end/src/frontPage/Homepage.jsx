@@ -273,11 +273,9 @@ const CookStaff = () => {
   });
   const scrollOpacity2 = useTransform(
     scrollYProgress2,
-    [0, 0.5, 1],
-    [0, 0.3, 1]
+    [0, 0.7, 0.9, 1],
+    [0, 0.3, 0.5, 1]
   );
-  const scrollX2 = useTransform(scrollYProgress2, [0, 1], [-900, 0]);
-  const scrollImg2 = useTransform(scrollYProgress2, [0, 1], [900, 0]);
 
   return (
     <div className="section" ref={ref2}>
@@ -285,7 +283,6 @@ const CookStaff = () => {
         className="imgDiv"
         style={{
           opacity: scrollOpacity2,
-          x: scrollImg2,
         }}
       >
         <img src={cook} alt="wait" className="img" />
@@ -294,7 +291,6 @@ const CookStaff = () => {
         className="p"
         style={{
           opacity: scrollOpacity2,
-          x: scrollX2,
         }}
       >
         <h2>Artisans de la Cuisine Traditionnelle Algérienne</h2>

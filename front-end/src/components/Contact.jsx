@@ -99,40 +99,36 @@ const Contact = () => {
       </div>
       <div className="form">
         <div className="touches">
-          <h2 className="articleHeader mb-32">our information</h2>
+          <h2 className="articleHeader mb-32">nos informations</h2>
 
           <p>
-            <span className="mealSpan">Address:</span>
+            <span className="mealSpan">adresse:</span>
             ------
           </p>
           <p>
-            <span className="mealSpan">Phone:</span>
+            <span className="mealSpan">téléphone:</span>
             (213) ------
           </p>
           <p>
             <span className="mealSpan">Email:</span>
             ------@--.com
           </p>
-          <p>
-            <span className="mealSpan">Address:</span>
-            ------
-          </p>
         </div>
         <div className="loginContainer">
           <form ref={form} onSubmit={sendEmail}>
             <label htmlFor="name" className="inputLabel">
-              First Name:
+              prénom:
               <input type="text" name="ame" id="name" className="input" />
             </label>
             <br />
 
             <label htmlFor="email" className="inputLabel">
-              Your Email:
+              Votre Email:
               <input type="email" name="email" id="email" className="input" />
             </label>
             <br />
             <label htmlFor="comment" className="inputLabel">
-              Your Comment:
+              votre commentaire:
               <textarea
                 name="comment"
                 id="comment"
@@ -143,7 +139,7 @@ const Contact = () => {
             <br />
 
             <button onClick="submit" className="linkmenu">
-              Submit:
+              soumettre:
             </button>
           </form>
         </div>

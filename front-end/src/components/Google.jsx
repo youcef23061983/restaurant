@@ -70,15 +70,15 @@ const Google = () => {
           }}
           className="articleParagraph"
         >
-          Nichée au cœur de [nom de la ville], notre restaurant El Bahja vous
-          invite à un voyage culinaire à travers les traditions authentiques de
-          l'Algérie. Dans une atmosphère chaleureuse et conviviale, nous vous
-          accueillons pour déguster des plats typiques préparés avec soin selon
-          des recettes transmises de génération en génération. Que vous soyez en
-          famille, entre amis ou en quête de découvertes gastronomiques, notre
-          adresse est l'endroit idéal pour savourer l'essence de la cuisine
-          algérienne. Venez partager un moment unique et laissez-vous
-          transporter par les saveurs de notre terroir.
+          Nichée au cœur de Alger, notre restaurant El Bahja vous invite à un
+          voyage culinaire à travers les traditions authentiques de l'Algérie.
+          Dans une atmosphère chaleureuse et conviviale, nous vous accueillons
+          pour déguster des plats typiques préparés avec soin selon des recettes
+          transmises de génération en génération. Que vous soyez en famille,
+          entre amis ou en quête de découvertes gastronomiques, notre adresse
+          est l'endroit idéal pour savourer l'essence de la cuisine algérienne.
+          Venez partager un moment unique et laissez-vous transporter par les
+          saveurs de notre terroir.
         </motion.p>
       </div>
       <div className="mapResponsive">

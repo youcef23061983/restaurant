@@ -491,7 +491,6 @@ button {
 .mapResponsive {
   overflow: hidden;
   padding-bottom: 56.25%;
-  /* padding-bottom: 42.25%; */
   position: relative;
   height: 0;
 }
@@ -606,7 +605,7 @@ button {
   }
 
   h2 {
-    font-size: 2.4rem; /* Adjust the font size for headers */
+    font-size: 2.4rem;
     line-height: 1.5;
   }
   h3 {

@@ -116,18 +116,18 @@ const Contact = () => {
         </div>
         <div className="loginContainer">
           <form ref={form} onSubmit={sendEmail}>
-            <label htmlFor="name" className="inputLabel">
+            <label htmlFor="name">
               prénom:
-              <input type="text" name="ame" id="name" className="input" />
+              <input type="text" name="name" id="name" className="input" />
             </label>
             <br />
 
-            <label htmlFor="email" className="inputLabel">
+            <label htmlFor="email">
               Votre Email:
               <input type="email" name="email" id="email" className="input" />
             </label>
             <br />
-            <label htmlFor="comment" className="inputLabel">
+            <label htmlFor="comment">
               votre commentaire:
               <textarea
                 name="comment"

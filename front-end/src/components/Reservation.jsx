@@ -74,18 +74,14 @@ const Reservation = () => {
   const isMediumScreen = useMediaQuery("(min-width: 768px)");
 
   const ref = useRef();
-  const { scrollYProgress: scrollYProgress1 } = useScroll({
-    ref,
+  const { scrollYProgress } = useScroll({
+    target: ref,
     offset: ["0 1", isMediumScreen ? "0.2 0" : "0.05 0"],
   });
 
-  const scrollOpacity = useTransform(
-    scrollYProgress1,
-    [0, 0.5, 1],
-    [0, 0.3, 1]
-  );
-  const scrollParagraph = useTransform(scrollYProgress1, [0, 1], [-500, 0]);
-  const scrollHeader = useTransform(scrollYProgress1, [0, 1], [500, 0]);
+  const scrollOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.3, 1]);
+  const scrollParagraph = useTransform(scrollYProgress, [0, 1], [-300, 0]);
+  const scrollHeader = useTransform(scrollYProgress, [0, 1], [200, 0]);
   console.log(getTimes());
 
   return (

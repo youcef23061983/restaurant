@@ -210,18 +210,15 @@ const Introduction = () => {
   const ref = useRef(null);
 
   const isMediumScreen = useMediaQuery("(min-width: 768px)");
-
-  const { scrollYProgress: scrollYProgress1 } = useScroll({
-    ref: ref,
-    offset: ["0 1", isMediumScreen ? "0.3 0" : "0.25 0"],
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end end"],
+    offset: ["0 1", isMediumScreen ? "0.7 1" : "0.3 0"],
   });
-  const scrollOpacity = useTransform(
-    scrollYProgress1,
-    [0, 0.5, 1],
-    [0, 0.3, 1]
-  );
-  const scrollX = useTransform(scrollYProgress1, [0, 1], [-900, 0]);
-  const scrollImg = useTransform(scrollYProgress1, [0, 1], [900, 0]);
+
+  const scrollOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
+  const scrollX = useTransform(scrollYProgress, [0, 1], [-800, 0]);
+  const scrollImg = useTransform(scrollYProgress, [0, 1], [800, 0]);
 
   return (
     <div className="section" ref={ref}>
@@ -242,17 +239,9 @@ const Introduction = () => {
         }}
       >
         <h2>Un Voyage Culinaire au Cœur d'Alger chez "El Bahja"</h2>
-
         <p>
           Découvrez l'authenticité et la richesse de la cuisine marocaine au
-          cœur de notre restaurant traditionnel, "El Bahja". Plongez dans une
-          ambiance chaleureuse et conviviale, où chaque détail a été
-          soigneusement pensé pour vous offrir une expérience culinaire unique.
-          Nos plats, préparés avec des ingrédients frais et des épices exquises,
-          vous transporteront au cœur des souks de Marrakech et des riads de
-          Fès. Que vous soyez amateur de couscous, de tajine ou de pâtisseries
-          orientales, chaque bouchée est une invitation au voyage, célébrant
-          l'hospitalité et les saveurs envoûtantes d'Alger' .
+          cœur de notre restaurant traditionnel, "El Bahja".
         </p>
         <Link className="link-btn" to="about">
           explorez davantage
@@ -268,7 +257,7 @@ const CookStaff = () => {
   const isMediumScreen = useMediaQuery("(min-width: 768px)");
 
   const { scrollYProgress: scrollYProgress2 } = useScroll({
-    ref: ref2,
+    target: ref2,
     offset: ["0 1", isMediumScreen ? "0.83 0" : "0.25 0"],
   });
   const scrollOpacity2 = useTransform(

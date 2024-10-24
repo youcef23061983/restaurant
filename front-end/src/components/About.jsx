@@ -39,17 +39,13 @@ const About = () => {
   const isMediumScreen = useMediaQuery("(min-width: 768px)");
 
   const ref = useRef();
-  const { scrollYProgress: scrollYProgress1 } = useScroll({
-    ref: ref,
-    offset: ["0 1", isMediumScreen ? "0.2 0" : "0.05 0"],
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", isMediumScreen ? "0.05 0" : "0.01 0"],
   });
-  const scrollOpacity = useTransform(
-    scrollYProgress1,
-    [0, 0.5, 1],
-    [0, 0.3, 1]
-  );
-  const scrollparagraph = useTransform(scrollYProgress1, [0, 1], [-500, 0]);
-  const scrollHeader = useTransform(scrollYProgress1, [0, 1], [500, 0]);
+  const scrollOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.3, 1]);
+  const scrollparagraph = useTransform(scrollYProgress, [0, 1], [-200, 0]);
+  const scrollHeader = useTransform(scrollYProgress, [0, 1], [200, 0]);
   return (
     <>
       <img src={notrehistoire} alt="" className="landingImg" />

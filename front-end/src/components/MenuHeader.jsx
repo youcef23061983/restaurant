@@ -36,8 +36,8 @@ const MenuHeader = () => {
 
   const ref = useRef();
   const { scrollYProgress: scrollYProgress1 } = useScroll({
-    ref: ref,
-    offset: ["0 1", isMediumScreen ? "0.2 0" : "0.05 0"],
+    target: ref,
+    offset: ["0 1", isMediumScreen ? "0.1 0" : "0.05 0"],
   });
   const scrollOpacity = useTransform(
     scrollYProgress1,

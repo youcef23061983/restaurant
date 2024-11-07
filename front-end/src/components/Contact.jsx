@@ -113,7 +113,7 @@ const Contact = () => {
         <div className="loginContainer">
           <form ref={form} onSubmit={sendEmail}>
             <label htmlFor="name">
-              prénom:
+              Nom et Prénom:
               <input type="text" name="name" id="name" className="input" />
             </label>
             <br />

@@ -213,7 +213,7 @@ const Introduction = () => {
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end end"],
-    offset: ["0 1", isMediumScreen ? "0.7 1" : "0.3 0"],
+    offset: ["0 1", isMediumScreen ? "0.7 1" : "0.1 0"],
   });
 
   const scrollOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -240,8 +240,16 @@ const Introduction = () => {
       >
         <h2>Un Voyage Culinaire au Cœur d'Alger chez "El Bahja"</h2>
         <p>
-          Découvrez l'authenticité et la richesse de la cuisine marocaine au
-          cœur de notre restaurant traditionnel, "El Bahja".
+          Bienvenue à El Bahja, où les saveurs riches de l'Algérie prennent vie
+          dans chaque plat. Notre restaurant est une véritable célébration de la
+          cuisine traditionnelle algérienne, offrant une atmosphère chaleureuse
+          et accueillante qui vous transporte au cœur de l'Afrique du Nord. Des
+          tajines parfumés et du couscous aux viandes grillées savoureuses et
+          aux épices aromatiques, chaque bouchée est un voyage à travers des
+          générations de patrimoine culinaire. Que vous partagiez un repas
+          copieux en famille ou savouriez un dîner tranquille entre amis, El
+          Bahja vous promet une expérience gastronomique inoubliable qui vous
+          fait découvrir le goût authentique de l'Algérie.
         </p>
         <Link className="link-btn" to="about">
           explorez davantage
@@ -258,7 +266,7 @@ const CookStaff = () => {
 
   const { scrollYProgress: scrollYProgress2 } = useScroll({
     target: ref2,
-    offset: ["0 1", isMediumScreen ? "0.83 0" : "0.25 0"],
+    offset: ["0 1", isMediumScreen ? "0 0" : "0.25 0"],
   });
   const scrollOpacity2 = useTransform(
     scrollYProgress2,

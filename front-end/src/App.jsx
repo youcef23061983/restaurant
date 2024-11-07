@@ -34,7 +34,6 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} errorElement={<Error />}>
       <Route index element={<HomePage />} />
-      <Route />
       <Route path="about" element={<About />} />
       <Route path="contact" element={<Contact />} />
       <Route path="information" element={<Information />} />

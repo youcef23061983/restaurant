@@ -54,14 +54,7 @@ const HomePage = () => {
         <Carousel />
       </ReactLenis>
 
-      <ReactLenis
-        root
-        options={{
-          lerp: 0.05,
-        }}
-      >
-        <CookStaff />
-      </ReactLenis>
+      <CookStaff />
     </>
   );
 };
@@ -212,7 +205,6 @@ const Introduction = () => {
   const isMediumScreen = useMediaQuery("(min-width: 768px)");
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end end"],
     offset: ["0 1", isMediumScreen ? "0.7 1" : "0.1 0"],
   });
 

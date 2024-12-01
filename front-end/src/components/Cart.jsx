@@ -5,16 +5,14 @@ import cartImg from "/images/landingimage/cart.jpg";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, total, amount, clearCart } = useContext(AppContext);
-
+  const { cart, total, amount, updatedCart, clearCart } =
+    useContext(AppContext);
   const tax = parseFloat((total * 0.1).toFixed(2));
   const totalAll = parseFloat((total + tax).toFixed(2));
-  console.log(cart);
 
   useEffect(() => {
     document.title = "Cart";
   }, []);
-
   useEffect(() => {
     // Automatically update localStorage whenever the cart changes
     localStorage.setItem("restaurantCart", JSON.stringify(cart));
@@ -30,7 +28,7 @@ const Cart = () => {
         )}
       </div>
       <div>
-        {cart?.map((item) => (
+        {cart.map((item) => (
           <CartItem item={item} key={item.id} />
         ))}
       </div>
@@ -43,7 +41,7 @@ const Cart = () => {
           <Link onClick={clearCart} className="linkmenu">
             Tout effacer
           </Link>
-          <Link className="linkmenu" to="/information">
+          <Link className="linkmenu" to="/information" onClick={updatedCart}>
             Passer à la caisse
           </Link>
         </div>
@@ -51,5 +49,4 @@ const Cart = () => {
     </div>
   );
 };
-
 export default Cart;

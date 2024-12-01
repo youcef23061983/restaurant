@@ -5,8 +5,7 @@ import cartImg from "/images/landingimage/cart.jpg";
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-  const { cart, total, amount, updatedCart, clearCart } =
-    useContext(AppContext);
+  const { cart, total, amount, clearCart } = useContext(AppContext);
   const tax = parseFloat((total * 0.1).toFixed(2));
   const totalAll = parseFloat((total + tax).toFixed(2));
 
@@ -41,7 +40,7 @@ const Cart = () => {
           <Link onClick={clearCart} className="linkmenu">
             Tout effacer
           </Link>
-          <Link className="linkmenu" to="/information" onClick={updatedCart}>
+          <Link className="linkmenu" to="/information">
             Passer à la caisse
           </Link>
         </div>

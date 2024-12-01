@@ -128,9 +128,11 @@ const Payment = () => {
               <CheckoutForm />
             </Elements>
           )}
+          {/* {paymentSucceeded && ( */}
           <button type="submit" className="addCart">
-            Continuez
+            Continue
           </button>
+          {/* )} */}
         </form>
       </motion.div>
     </motion.div>

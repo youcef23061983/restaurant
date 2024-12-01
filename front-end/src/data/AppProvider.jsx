@@ -151,17 +151,16 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "GET_TOTAL" });
   };
 
-  const updatedCart = () => {
-    localStorage.setItem("cart", JSON.stringify(state.cart));
-
-    dispatch({ type: "LOAD_CART", payload: state.cart });
-  };
   useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
+    const storedCart = localStorage.getItem("restaurantCart");
     if (storedCart) {
       dispatch({ type: "LOAD_CART", payload: JSON.parse(storedCart) });
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem("restaurantCart", JSON.stringify(state.cart));
+  }, [state.cart]);
 
   const updateItemPrice = (id, newPrice, newImage) => {
     dispatch({
@@ -204,7 +203,6 @@ const AppProvider = ({ children }) => {
         decrease,
         cartPayment,
         addTocart,
-        updatedCart,
         updateItemPrice,
         cartInformation,
       }}

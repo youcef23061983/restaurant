@@ -1,7 +1,11 @@
 export async function getMeals(id) {
   const url = id
-    ? `http://localhost:3000/menu/${id}`
-    : " http://localhost:3000/menu";
+    ? `${import.meta.env.VITE_PUBLIC_MENU_URL}/menu/${id}`
+    : `${import.meta.env.VITE_PUBLIC_MENU_URL}/menu`;
+
+  // ? `http://localhost:3000/menu/${id}`
+  // : " http://localhost:3000/menu";
+
   const res = await fetch(url);
   if (!res.ok) {
     throw {

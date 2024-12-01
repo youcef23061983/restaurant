@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { CiTrash } from "react-icons/ci";
 import { AppContext } from "../data/AppProvider";
 
@@ -7,22 +7,8 @@ const CartItem = ({ item }) => {
     useContext(AppContext);
 
   const [isSwitchOn, setIsSwitchOn] = useState(() => {
-    // Load the saved switch state from localStorage
     return localStorage.getItem(`isSwitchOn_${item.id}`) === "true";
   });
-
-  useEffect(() => {
-    // Update the price and image based on the saved state
-    const savedPrice = localStorage.getItem(`itemPrice_${item.id}`);
-    const savedImage = localStorage.getItem(`itemImage_${item.id}`);
-
-    if (savedPrice && savedImage) {
-      updateItemPrice(item.id, parseFloat(savedPrice), savedImage);
-    } else {
-      // If no saved state, initialize with default values
-      updateItemPrice(item.id, item.price[0], item.image[0]);
-    }
-  }, [item.id, updateItemPrice, item.price, item.image]);
 
   const handleToggleSize = () => {
     const newSize = !isSwitchOn;

@@ -16,6 +16,7 @@ const Cart = () => {
     // Automatically update localStorage whenever the cart changes
     localStorage.setItem("restaurantCart", JSON.stringify(cart));
   }, [cart]);
+  console.log(cart);
 
   return (
     <div>
@@ -27,7 +28,7 @@ const Cart = () => {
         )}
       </div>
       <div>
-        {cart.map((item) => (
+        {cart?.map((item) => (
           <CartItem item={item} key={item.id} />
         ))}
       </div>

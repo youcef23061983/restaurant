@@ -31,7 +31,7 @@ export async function action({ request }) {
     const formData = await request.formData();
     const email = formData.get("email");
     const password = formData.get("password");
-    const data = await fakeLoginUser({ email, password });
+    // const data = await fakeLoginUser({ email, password });
     // console.log(email, password);
     localStorage.setItem("loggedin", true);
     return redirect("/cart");

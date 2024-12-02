@@ -154,12 +154,21 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     const storedCart = localStorage.getItem("restaurantCart");
     if (storedCart) {
-      dispatch({ type: "LOAD_CART", payload: JSON.parse(storedCart) });
+      try {
+        dispatch({ type: "LOAD_CART", payload: JSON.parse(storedCart) });
+      } catch (error) {
+        console.error("Error loading cart:", error);
+        localStorage.removeItem("restaurantCart");
+      }
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("restaurantCart", JSON.stringify(state.cart));
+    try {
+      localStorage.setItem("restaurantCart", JSON.stringify(state.cart));
+    } catch (error) {
+      console.error("Error saving cart:", error);
+    }
   }, [state.cart]);
 
   const updateItemPrice = (id, newPrice, newImage) => {

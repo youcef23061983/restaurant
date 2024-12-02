@@ -4,7 +4,7 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 import { useLoaderData } from "react-router-dom";
 async function getGallery() {
-  const url = `${import.meta.env.VITE_PROD_URL_URL}/gallery`;
+  const url = `${import.meta.env.VITE_PUBLIC_MENU_URL}/gallery`;
 
   const res = await fetch(url);
   if (!res.ok) {

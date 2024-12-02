@@ -25,7 +25,7 @@ import Login, {
 import RequiredAuth from "./components/RequiredAuth";
 import Information from "./components/Information";
 import Payment from "./components/Payment";
-import Bill from "./components/bill";
+import Bill from "./components/Bill";
 import Gallery, { loader as galleryLoader } from "./components/Gallery";
 import Testimonial from "./components/Testimonial";
 import Signup from "./components/Signup";

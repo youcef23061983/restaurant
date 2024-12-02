@@ -60,7 +60,7 @@ const Gallery = () => {
   const ref = useRef();
   const { scrollYProgress: scrollYProgress1 } = useScroll({
     target: ref,
-    offset: ["0 1", isMediumScreen ? "0.2 0" : "0.05 0"],
+    offset: ["0 1", "-0.1 0"],
   });
   const scrollOpacity = useTransform(scrollYProgress1, [0, 1], [0.5, 1]);
   const scrollparagraph = useTransform(scrollYProgress1, [0, 1], [-200, 0]);

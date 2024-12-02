@@ -6,42 +6,11 @@ const Google = () => {
   useEffect(() => {
     document.title = "Google";
   }, []);
-  const useMediaQuery = (query) => {
-    const [matches, setMatches] = useState(false);
-
-    useEffect(() => {
-      const media = window.matchMedia(query);
-      if (media.matches !== matches) {
-        setMatches(media.matches);
-      }
-
-      const listener = () => {
-        setMatches(media.matches);
-      };
-
-      if (typeof media.addEventListener === "function") {
-        media.addEventListener("change", listener);
-      } else {
-        media.addListener(listener);
-      }
-
-      return () => {
-        if (typeof media.removeEventListener === "function") {
-          media.removeEventListener("change", listener);
-        } else {
-          media.removeListener(listener);
-        }
-      };
-    }, [matches, query]);
-
-    return matches;
-  };
-  const isMediumScreen = useMediaQuery("(min-width: 768px)");
 
   const ref = useRef();
   const { scrollYProgress: scrollYProgress1 } = useScroll({
     target: ref,
-    offset: ["0 1", isMediumScreen ? "0.2 0" : "0.05 0"],
+    offset: ["0 1", "-0.2 0"],
   });
   const scrollOpacity = useTransform(scrollYProgress1, [0, 1], [0.5, 1]);
   const scrollparagraph = useTransform(scrollYProgress1, [0, 1], [-500, 0]);

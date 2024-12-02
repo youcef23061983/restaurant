@@ -83,10 +83,13 @@ const OverlayCopy = ({ subheading, heading }) => {
         opacity,
       }}
       ref={targetRef}
-      className="absolute left-0 top-0 flex h-screen w-full flex-col items-center justify-center text-white"
     >
-      <h3 style={{ color: "rgb(245, 240, 234)" }}>{subheading}</h3>
-      <h2 style={{ color: "rgb(245, 240, 234)" }}>{heading}</h2>
+      <h2 style={{ color: "rgb(245, 240, 234)", textAlign: "center" }}>
+        {subheading}
+      </h2>
+      <h2 style={{ color: "rgb(245, 240, 234)", textAlign: "center" }}>
+        {heading}
+      </h2>
     </motion.div>
   );
 };

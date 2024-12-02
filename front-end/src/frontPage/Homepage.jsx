@@ -205,7 +205,7 @@ const Introduction = () => {
   const isMediumScreen = useMediaQuery("(min-width: 768px)");
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["0 1", isMediumScreen ? "0.7 1" : "0.1 0"],
+    offset: ["0 1", isMediumScreen ? "0.7 1" : "0 0"],
   });
 
   const scrollOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
@@ -254,11 +254,9 @@ const Introduction = () => {
 const CookStaff = () => {
   const ref2 = useRef(null);
 
-  const isMediumScreen = useMediaQuery("(min-width: 768px)");
-
   const { scrollYProgress: scrollYProgress2 } = useScroll({
     target: ref2,
-    offset: ["0 1", isMediumScreen ? "0 0" : "0.25 0"],
+    offset: ["0 1", "0 0"],
   });
   const scrollOpacity2 = useTransform(
     scrollYProgress2,

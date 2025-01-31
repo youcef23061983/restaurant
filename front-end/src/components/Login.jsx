@@ -50,7 +50,7 @@ const Login = () => {
 
   return (
     <div>
-      <img src={login} alt="" className="landingImg" />
+      <img src={login} alt="loginImg" loading="lazy" className="landingImg" />
       <div className="login-container">
         <h2>Sign in to your account</h2>
         {message && <h3 className="red">{message}</h3>}

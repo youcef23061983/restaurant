@@ -45,7 +45,7 @@ const Signup = () => {
   };
   return (
     <div>
-      <img src={signup} alt="" className="landingImg" />
+      <img src={signup} alt="signupImg" loading="lazy" className="landingImg" />
       <div className="loginContainer">
         <h2 className="articleHeader">Sign Up</h2>
         <form onSubmit={handleSubmit}>

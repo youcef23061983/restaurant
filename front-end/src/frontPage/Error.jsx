@@ -7,7 +7,7 @@ export default function Error() {
 
   return (
     <div>
-      <img src={errorImg} alt="" className="landingImg" />
+      <img src={errorImg} alt="error" loading="lazy" className="landingImg" />
       <div className="article">
         <h2 className="articleHeader">Error: {error.message}</h2>
         <p className="articleParagraph">

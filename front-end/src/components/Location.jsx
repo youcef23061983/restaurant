@@ -1,11 +1,9 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 import loc from "/images/landingimage/location.jpg";
+import { Helmet } from "react-helmet-async";
 
 const Location = () => {
-  useEffect(() => {
-    document.title = "Location";
-  }, []);
   const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(false);
 
@@ -48,7 +46,36 @@ const Location = () => {
   const scrollHeader = useTransform(scrollYProgress, [0, 1], [300, 0]);
   return (
     <>
-      <img src={loc} className="landingImg" />
+      <Helmet>
+        <title>Notre Emplacement</title>
+        <meta
+          name="description"
+          content="Trouvez l'emplacement de notre restaurant et visitez-nous pour un repas délicieux."
+        />
+        <meta property="og:title" content="Notre Emplacement" />
+        <meta
+          property="og:description"
+          content="Trouvez l'emplacement de notre restaurant et visitez-nous pour un repas délicieux."
+        />
+        <meta property="og:image" content={loc} />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Notre Emplacement" />
+        <meta
+          name="twitter:description"
+          content="Trouvez l'emplacement de notre restaurant et visitez-nous pour un repas délicieux."
+        />
+        <meta name="twitter:image" content={loc} />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="emplacement, restaurant, visite, repas"
+        />
+        <meta name="author" content="el bahja" />
+      </Helmet>
+
+      <img src={loc} className="landingImg" alt="locationImg" loading="lazy" />
       <div ref={ref} className="article">
         <motion.h2
           style={{

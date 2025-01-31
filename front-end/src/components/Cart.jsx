@@ -20,7 +20,7 @@ const Cart = () => {
 
   return (
     <div>
-      <img src={cartImg} alt="" className="landingImg" />
+      <img src={cartImg} alt="cart" loading="lazy" className="landingImg" />
       <h2 className="articleHeader">votre panier.</h2>
       <div>
         {cart.length === 0 && (

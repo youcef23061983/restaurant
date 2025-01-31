@@ -17,7 +17,12 @@ const Google = () => {
   const scrollHeader = useTransform(scrollYProgress1, [0, 1], [500, 0]);
   return (
     <div>
-      <img src={googleImg} className="landingImg" alt="" />
+      <img
+        src={googleImg}
+        className="landingImg"
+        alt="googleImg"
+        loading="lazy"
+      />
       <div ref={ref} className="article">
         <motion.h2
           style={{

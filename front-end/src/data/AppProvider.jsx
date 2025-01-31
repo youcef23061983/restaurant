@@ -10,11 +10,9 @@ const initialState = {
   information: {},
   isSwitchOn: false,
 };
-
 const AppProvider = ({ children }) => {
   const [menu, setMenu] = useState([]);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
-
   useEffect(() => {
     async function getData() {
       const data = await getMeals();
@@ -26,13 +24,11 @@ const AppProvider = ({ children }) => {
     switch (action.type) {
       case "CLEAR_CART":
         return { ...state, cart: [], total: 0, amount: 0 };
-
       case "REMOVE":
         return {
           ...state,
           cart: state.cart.filter((item) => item.id !== action.payload),
         };
-
       case "INCREASE": {
         const newCart = state.cart.map((item) => {
           if (item.id === action.payload) {
@@ -42,7 +38,6 @@ const AppProvider = ({ children }) => {
         });
         return { ...state, cart: newCart };
       }
-
       case "DECREASE": {
         const newCart = state.cart
           .map((item) => {
@@ -54,7 +49,6 @@ const AppProvider = ({ children }) => {
           .filter((item) => item.amount > 0);
         return { ...state, cart: newCart };
       }
-
       case "TOGGLE_SIZE": {
         const isSwitchOn = !state.isSwitchOn;
         const updatedCart = state.cart.map((item) => {
@@ -64,7 +58,6 @@ const AppProvider = ({ children }) => {
         });
         return { ...state, cart: updatedCart, isSwitchOn };
       }
-
       case "GET_TOTAL": {
         let { amount, total } = state.cart.reduce(
           (cartTotal, cartItem) => {
@@ -78,7 +71,6 @@ const AppProvider = ({ children }) => {
         total = parseFloat(total.toFixed(2));
         return { ...state, amount, total };
       }
-
       case "ADD_TO_CART": {
         const newProduct = menu.find(
           (product) => product.id === action.payload
@@ -99,7 +91,6 @@ const AppProvider = ({ children }) => {
         ];
         return { ...state, cart: updatedCart };
       }
-
       case "PAYMENT": {
         return { ...state, payment: action.payload };
       }
@@ -109,11 +100,9 @@ const AppProvider = ({ children }) => {
           information: action.payload,
         };
       }
-
       case "LOAD_CART": {
         return { ...state, cart: action.payload };
       }
-
       case "UPDATE_ITEM_PRICE": {
         const { id, newPrice, newImage } = action.payload;
         const updatedCart = state.cart.map((item) =>
@@ -123,12 +112,10 @@ const AppProvider = ({ children }) => {
         );
         return { ...state, cart: updatedCart };
       }
-
       default:
         return state;
     }
   };
-
   const [state, dispatch] = useReducer(Reducer, initialState);
   const addTocart = (id) => {
     dispatch({ type: "ADD_TO_CART", payload: id });
@@ -150,7 +137,6 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "DECREASE", payload: id });
     dispatch({ type: "GET_TOTAL" });
   };
-
   useEffect(() => {
     const storedCart = localStorage.getItem("restaurantCart");
     if (storedCart) {
@@ -162,7 +148,6 @@ const AppProvider = ({ children }) => {
       }
     }
   }, []);
-
   useEffect(() => {
     try {
       localStorage.setItem("restaurantCart", JSON.stringify(state.cart));
@@ -170,7 +155,6 @@ const AppProvider = ({ children }) => {
       console.error("Error saving cart:", error);
     }
   }, [state.cart]);
-
   const updateItemPrice = (id, newPrice, newImage) => {
     dispatch({
       type: "UPDATE_ITEM_PRICE",
@@ -178,11 +162,9 @@ const AppProvider = ({ children }) => {
     });
     dispatch({ type: "GET_TOTAL" }); // Ensure totals are recalculated
   };
-
   const toggleSize = () => {
     dispatch({ type: "TOGGLE_SIZE" });
   };
-
   const handleToggleSize = (id) => {
     const newSize = !state.isSwitchOn;
     const item = menu.find((item) => item.id === id);
@@ -191,7 +173,6 @@ const AppProvider = ({ children }) => {
     updateItemPrice(id, newPrice, newImage); // Pass both newPrice and newImage
     toggleSize();
   };
-
   const cartInformation = (information) => {
     localStorage.setItem("information", JSON.stringify(information));
     dispatch({ type: "INFORMATION", payload: information });
@@ -200,7 +181,6 @@ const AppProvider = ({ children }) => {
     localStorage.setItem("payment", JSON.stringify(payment));
     dispatch({ type: "PAYMENT", payload: payment });
   };
-
   return (
     <AppContext.Provider
       value={{

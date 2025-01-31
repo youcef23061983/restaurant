@@ -3,6 +3,7 @@ import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
 import mealDetail from "/images/landingimage/mealDetail.jpg";
 import { getMeals } from "../data/API";
 import { AppContext } from "../data/AppProvider";
+import { Helmet } from "react-helmet-async";
 export const loader = async ({ params }) => {
   return getMeals(params.id);
 };
@@ -19,10 +20,44 @@ const MealDetail = () => {
   const displayTitle = isSwitchOn ? "get big" : "get small";
   return (
     <div>
-      <img src={mealDetail} alt="" className="landingImg" />
+      <Helmet>
+        <title>Détail du Repas</title>
+        <meta
+          name="description"
+          content={`Découvrez les détails de notre délicieux repas: ${name}.`}
+        />
+        <meta property="og:title" content="Détail du Repas" />
+        <meta
+          property="og:description"
+          content={`Découvrez les détails de notre délicieux repas: ${name}.`}
+        />
+        <meta property="og:image" content={mealDetail} />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Détail du Repas" />
+        <meta
+          name="twitter:description"
+          content={`Découvrez les détails de notre délicieux repas: ${name}.`}
+        />
+        <meta name="twitter:image" content={mealDetail} />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="repas, détail, restaurant, cuisine" />
+        <meta name="author" content="el bahja" />
+        <link
+          rel="canonical"
+          href={`https://elbahjarestaurant.vercel.app/menu/${id}`}
+        />
+      </Helmet>
+      <img
+        src={mealDetail}
+        alt="mealDetailImg"
+        loading="lazy"
+        className="landingImg"
+      />
       <div className="detailDiv">
         <div className="detailImg">
-          <img src={displayImage} alt="Meal" className="img" />
+          <img src={displayImage} alt="Meal" loading="lazy" className="img" />
         </div>
         <div className="mealContainer">
           <p>

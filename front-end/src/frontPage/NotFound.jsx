@@ -5,7 +5,12 @@ import { Link } from "react-router-dom";
 const NotFound = () => {
   return (
     <div>
-      <img src={notfound} alt="" className="landingImg" />
+      <img
+        src={notfound}
+        alt="notfound"
+        loading="lazy"
+        className="landingImg"
+      />
       <div className="article">
         <h2 className="articleHeader">Error: This page has not been found</h2>
         <Link className="link-btn" to="">

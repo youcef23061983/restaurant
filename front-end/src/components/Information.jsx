@@ -83,7 +83,12 @@ const Information = () => {
       exit="exit"
     >
       <motion.div variants={childVariants}>
-        <img src={infoImg} alt="" className="landingImg" />
+        <img
+          src={infoImg}
+          alt="informationImg"
+          loading="lazy"
+          className="landingImg"
+        />
       </motion.div>
       <motion.div className="loginContainer" variants={containerVariants}>
         <h2 className="articleHeader">Client Information</h2>

@@ -1,7 +1,8 @@
 import contact from "/images/landingimage/contact.jpg";
 import emailjs from "@emailjs/browser";
 import { useScroll, useTransform, motion } from "framer-motion";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
+import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   const [formStatus, setFormStatus] = useState(null);
@@ -41,9 +42,6 @@ const Contact = () => {
         }
       );
   };
-  useEffect(() => {
-    document.title = "Contact";
-  }, []);
 
   const ref = useRef();
   const { scrollYProgress } = useScroll({
@@ -55,7 +53,32 @@ const Contact = () => {
   const scrollHeader = useTransform(scrollYProgress, [0, 1], [300, 0]);
   return (
     <div>
-      <img src={contact} alt="" className="landingImg" />
+      <Helmet>
+        <title>Contactez-Nous</title>
+        <meta
+          name="description"
+          content="Contactez-nous pour toute demande de renseignements ou réservation."
+        />
+        <meta property="og:title" content="Contactez-Nous" />
+        <meta
+          property="og:description"
+          content="Contactez-nous pour toute demande de renseignements ou réservation."
+        />
+        <meta property="og:image" content={contact} />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Contactez-Nous" />
+        <meta
+          name="twitter:description"
+          content="Contactez-nous pour toute demande de renseignements ou réservation."
+        />
+        <meta name="twitter:image" content={contact} />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="contact, demandes, réservations" />
+        <meta name="author" content="el bahja" />
+      </Helmet>
+      <img src={contact} alt="contact" loading="lazy" className="landingImg" />
       <div ref={ref} className="article">
         <motion.h2
           style={{

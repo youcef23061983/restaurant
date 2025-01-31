@@ -17,7 +17,13 @@ const Reviews = () => {
   return (
     <article className="review">
       <div className="img-container">
-        <img src={image} alt={name} className="person-img" key={id} />
+        <img
+          src={image}
+          alt={name}
+          className="person-img"
+          loading="lazy"
+          key={id}
+        />
         <span className="quote-icon">
           <FaQuoteRight />
         </span>

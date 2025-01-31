@@ -2,10 +2,8 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 import testimonialImg from "/images/landingimage/testimonial.jpg";
 import Reviews from "./reviews/Reviews";
+import { Helmet } from "react-helmet-async";
 const Testimonial = () => {
-  useEffect(() => {
-    document.title = "témoignage";
-  }, []);
   const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(false);
 
@@ -48,7 +46,40 @@ const Testimonial = () => {
   const scrollHeader = useTransform(scrollYProgress, [0, 1], [300, 0]);
   return (
     <>
-      <img src={testimonialImg} alt="" className="landingImg" />
+      <Helmet>
+        <title>Témoignages</title>
+        <meta
+          name="description"
+          content="Lisez les témoignages de nos clients satisfaits et découvrez pourquoi ils aiment notre restaurant."
+        />
+        <meta property="og:title" content="Témoignages" />
+        <meta
+          property="og:description"
+          content="Lisez les témoignages de nos clients satisfaits et découvrez pourquoi ils aiment notre restaurant."
+        />
+        <meta property="og:image" content={testimonialImg} />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Témoignages" />
+        <meta
+          name="twitter:description"
+          content="Lisez les témoignages de nos clients satisfaits et découvrez pourquoi ils aiment notre restaurant."
+        />
+        <meta name="twitter:image" content={testimonialImg} />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="témoignages, avis, restaurant, clients"
+        />
+        <meta name="author" content="Desire" />
+      </Helmet>
+      <img
+        src={testimonialImg}
+        alt="testimonialUmg"
+        loading="lazy"
+        className="landingImg"
+      />
       <div ref={ref} className="article">
         <motion.h2
           style={{

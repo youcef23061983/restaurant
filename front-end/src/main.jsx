@@ -4,13 +4,16 @@ import App from "./App.jsx";
 import "./index.css";
 import AppProvider from "./data/AppProvider.jsx";
 import { AnimatePresence } from "framer-motion";
+import { HelmetProvider } from "react-helmet-async";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AppProvider>
-      <AnimatePresence>
-        <App />
-      </AnimatePresence>
-    </AppProvider>
+    <HelmetProvider>
+      <AppProvider>
+        <AnimatePresence>
+          <App />
+        </AnimatePresence>
+      </AppProvider>
+    </HelmetProvider>
   </StrictMode>
 );

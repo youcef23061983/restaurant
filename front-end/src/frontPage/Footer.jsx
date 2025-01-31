@@ -12,7 +12,12 @@ const Footer = () => {
       <div className="footer">
         <div className="footerlogo">
           <Link to="/">
-            <img src="/images/footerlogo.png" alt="" className="img" />
+            <img
+              src="/images/footerlogo.png"
+              alt="footer"
+              loading="lazy"
+              className="img"
+            />
           </Link>
           <span className="footerspan">EL BAHJA</span>
         </div>

@@ -16,9 +16,37 @@ import cook from "/images/frontpage/cook.jpg";
 import { Link } from "react-router-dom";
 import TextParallaxContentExample from "./Image";
 import Carousel from "./Carousel";
+import { Helmet } from "react-helmet-async";
+
 const HomePage = () => {
   return (
     <>
+      <Helmet>
+        <title>Accueil</title>
+        <meta
+          name="description"
+          content="Bienvenue sur notre site. Découvrez notre restaurant et nos délicieux repas."
+        />
+        <meta property="og:title" content="Accueil" />
+        <meta
+          property="og:description"
+          content="Bienvenue sur notre site. Découvrez notre restaurant et nos délicieux repas."
+        />
+        <meta property="og:image" content="/images/frontpage/welcome.jpg" />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Accueil" />
+        <meta
+          name="twitter:description"
+          content="Bienvenue sur notre site. Découvrez notre restaurant et nos délicieux repas."
+        />
+        <meta name="twitter:image" content="/images/frontpage/welcome.jpg" />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="restaurant, accueil, repas, délicieux" />
+        <meta name="author" content="el bahja" />
+      </Helmet>
+
       <div style={{ backgroundColor: "rgb(245, 240, 234)" }}>
         <ReactLenis
           root
@@ -221,7 +249,7 @@ const Introduction = () => {
           x: scrollImg,
         }}
       >
-        <img src={introduction} alt="wait" className="img" />
+        <img src={introduction} alt="wait" loading="lazy" className="img" />
       </motion.div>
       <motion.div
         className="p"
@@ -272,7 +300,7 @@ const CookStaff = () => {
           opacity: scrollOpacity2,
         }}
       >
-        <img src={cook} alt="wait" className="img" />
+        <img src={cook} alt="wait" loading="lazy" className="img" />
       </motion.div>
       <motion.div
         className="p"

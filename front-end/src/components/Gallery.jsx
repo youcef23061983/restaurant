@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 import { useLoaderData } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 async function getGallery() {
   const url = `${import.meta.env.VITE_PUBLIC_MENU_URL}/gallery`;
 
@@ -22,9 +23,6 @@ export const loader = async () => {
 };
 
 const Gallery = () => {
-  useEffect(() => {
-    document.title = "Gallerie";
-  }, []);
   const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(false);
 
@@ -67,7 +65,38 @@ const Gallery = () => {
   const scrollHeader = useTransform(scrollYProgress1, [0, 1], [200, 0]);
   return (
     <>
-      <img src={galleryImg} alt="" className="landingImg" />
+      <Helmet>
+        <title>Galerie</title>
+        <meta
+          name="description"
+          content="Découvrez notre galerie et plongez dans l'univers culinaire de notre restaurant."
+        />
+        <meta property="og:title" content="Galerie" />
+        <meta
+          property="og:description"
+          content="Découvrez notre galerie et plongez dans l'univers culinaire de notre restaurant."
+        />
+        <meta property="og:image" content={galleryImg} />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Galerie" />
+        <meta
+          name="twitter:description"
+          content="Découvrez notre galerie et plongez dans l'univers culinaire de notre restaurant."
+        />
+        <meta name="twitter:image" content={galleryImg} />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="galerie, restaurant, cuisine, photos" />
+        <meta name="author" content="Desire" />
+      </Helmet>
+
+      <img
+        src={galleryImg}
+        alt="gallery"
+        loading="lazy"
+        className="landingImg"
+      />
       <div ref={ref} className="article">
         <motion.h2
           style={{

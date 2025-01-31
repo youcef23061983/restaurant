@@ -8,9 +8,12 @@ const Meal = ({ meal, searchParams }) => {
 
   return (
     <div className="mealUnit">
-      <Link to={id} state={{ search: `?${searchParams.toString()}` }}>
+      <Link
+        to={`/menu/${id}`}
+        state={{ search: `?${searchParams.toString()}` }}
+      >
         <div className="unitImg">
-          <img src={image[0]} alt="" className="img" />
+          <img src={image[0]} alt="mealImg" loading="lazy" className="img" />
         </div>
       </Link>
 

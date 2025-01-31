@@ -3,13 +3,12 @@ import { AppContext } from "../data/AppProvider";
 import billImg from "/images/landingimage/bill.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Helmet } from "react-helmet-async";
 
 const Bill = () => {
   const { payment, information, cart, total, amount } = useContext(AppContext);
   const navigate = useNavigate();
   useEffect(() => {
-    document.title = "Bill";
-
     if (!payment.payment) {
       navigate("/payment");
     }
@@ -46,8 +45,34 @@ const Bill = () => {
       animate="visible"
       exit="exit"
     >
+      <Helmet>
+        <title>Bill</title>
+        <meta
+          name="description"
+          content="View your bill and payment details."
+        />
+        <meta property="og:title" content="Bill" />
+        <meta
+          property="og:description"
+          content="View your bill and payment details."
+        />
+        <meta property="og:image" content={billImg} />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Bill" />
+        <meta
+          name="twitter:description"
+          content="View your bill and payment details."
+        />
+        <meta name="twitter:image" content={billImg} />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="bill, payment, details, restaurant" />
+        <meta name="author" content="el bahja" />
+      </Helmet>
+
       <motion.div variants={childVariants}>
-        <img src={billImg} alt="" className="landingImg" />
+        <img src={billImg} alt="bill" loading="lazy" className="landingImg" />
       </motion.div>
       <motion.h2 className="articleHeader" variants={containerVariants}>
         Votre commande{" "}
@@ -96,7 +121,12 @@ const Bill = () => {
               return (
                 <div className="cartDiv" key={item.id}>
                   <div className="cartImg">
-                    <img src={item?.displayImage} alt="" className="img" />
+                    <img
+                      src={item?.displayImage}
+                      alt="cartImg"
+                      loading="lazy"
+                      className="img"
+                    />
                   </div>
                   <h3 className="cartName">{item?.name}...</h3>
                   <div>

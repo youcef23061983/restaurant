@@ -4,6 +4,7 @@ import reserver from "/images/landingimage/reserver.jpg";
 import Calendar from "react-calendar";
 import "./calendar.css";
 import { add, format } from "date-fns";
+import { Helmet } from "react-helmet-async";
 
 const Reservation = () => {
   const [date, setDate] = useState({
@@ -41,7 +42,6 @@ const Reservation = () => {
     const { name, value } = e.target;
     setDate((prev) => ({ ...prev, [name]: value }));
   };
-  console.log(date);
 
   const useMediaQuery = (query) => {
     const [matches, setMatches] = useState(false);
@@ -82,11 +82,43 @@ const Reservation = () => {
   const scrollOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.3, 1]);
   const scrollParagraph = useTransform(scrollYProgress, [0, 1], [-300, 0]);
   const scrollHeader = useTransform(scrollYProgress, [0, 1], [200, 0]);
-  console.log(getTimes());
 
   return (
     <>
-      <img src={reserver} alt="Reservation" className="landingImg" />
+      <Helmet>
+        <title>Reservation</title>
+        <meta
+          name="description"
+          content="Make a reservation at our restaurant and enjoy a delightful dining experience."
+        />
+        <meta property="og:title" content="Reservation" />
+        <meta
+          property="og:description"
+          content="Make a reservation at our restaurant and enjoy a delightful dining experience."
+        />
+        <meta property="og:image" content={reserver} />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Reservation" />
+        <meta
+          name="twitter:description"
+          content="Make a reservation at our restaurant and enjoy a delightful dining experience."
+        />
+        <meta name="twitter:image" content={reserver} />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="reservation, dining, restaurant, booking"
+        />
+        <meta name="author" content="el bahja" />
+      </Helmet>
+      <img
+        src={reserver}
+        alt="Reservation"
+        className="landingImg"
+        loading="lazy"
+      />
       <div ref={ref} className="article">
         <motion.h2
           style={{ opacity: scrollOpacity, x: scrollHeader }}

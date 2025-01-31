@@ -2,6 +2,7 @@ import { useScroll, useTransform, motion } from "framer-motion";
 import React, { useState, useEffect, useRef } from "react";
 import ordre from "/images/landingimage/ordre.png";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Ordre = () => {
   const useMediaQuery = (query) => {
@@ -47,7 +48,35 @@ const Ordre = () => {
   const scrollHeader = useTransform(scrollYProgress, [0, 1], [500, 0]);
   return (
     <div>
-      <img src={ordre} alt="" className="landingImg" />
+      <Helmet>
+        <title>Ordre</title>
+        <meta
+          name="description"
+          content="Passez votre commande et profitez de nos délicieux repas."
+        />
+        <meta property="og:title" content="Ordre" />
+        <meta
+          property="og:description"
+          content="Passez votre commande et profitez de nos délicieux repas."
+        />
+        <meta property="og:image" content={ordre} />
+        <meta property="og:url" content={window.location.href} />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Ordre" />
+        <meta
+          name="twitter:description"
+          content="Passez votre commande et profitez de nos délicieux repas."
+        />
+        <meta name="twitter:image" content={ordre} />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="commande, nourriture, restaurant, repas"
+        />
+        <meta name="author" content="el bahja" />
+      </Helmet>
+      <img src={ordre} alt="orderImg" loading="lazy" className="landingImg" />
       <div ref={ref} className="article">
         <motion.h2
           style={{

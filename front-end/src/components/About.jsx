@@ -1,12 +1,9 @@
 import { useScroll, useTransform, motion } from "framer-motion";
-import React, { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import notrehistoire from "/images/landingimage/notrehistoire.jpg";
+import { Helmet } from "react-helmet-async";
 
 const About = () => {
-  useEffect(() => {
-    document.title = "About";
-  }, []);
-
   const ref = useRef();
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -15,9 +12,43 @@ const About = () => {
   const scrollOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.3, 1]);
   const scrollparagraph = useTransform(scrollYProgress, [0, 1], [-200, 0]);
   const scrollHeader = useTransform(scrollYProgress, [0, 1], [200, 0]);
+  const pageTitle = "About Us - El Bahja";
+
   return (
     <>
-      <img src={notrehistoire} alt="" className="landingImg" />
+      <Helmet>
+        <title>{pageTitle}</title>
+        <meta name="description" content="Nos repas traditionnels algériens" />
+        <meta property="og:title" content="Menu Repas" />
+        <meta
+          property="og:description"
+          content="Nos repas traditionnels algériens"
+        />
+        <meta property="og:image" content={notrehistoire} />
+        <meta property="og:url" content={window.location.href} />
+
+        {/* Twitter Meta Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Menu Repas" />
+        <meta
+          name="twitter:description"
+          content="Nos repas traditionnels algériens"
+        />
+        <meta name="twitter:image" content={notrehistoire} />
+        <meta name="robots" content="index, follow" />
+        <meta
+          name="keywords"
+          content="Menu, Boissons, Dessert, Repas, Commander, Réserver"
+        />
+        <meta name="author" content="el bahja" />
+      </Helmet>
+
+      <img
+        src={notrehistoire}
+        alt="about"
+        loading="lazy"
+        className="landingImg"
+      />
       <div ref={ref} className="article">
         <motion.h2
           style={{

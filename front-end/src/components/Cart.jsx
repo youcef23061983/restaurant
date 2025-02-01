@@ -13,10 +13,8 @@ const Cart = () => {
     document.title = "Cart";
   }, []);
   useEffect(() => {
-    // Automatically update localStorage whenever the cart changes
     localStorage.setItem("restaurantCart", JSON.stringify(cart));
   }, [cart]);
-  console.log(cart);
 
   return (
     <div>

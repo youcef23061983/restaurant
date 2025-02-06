@@ -57,7 +57,10 @@ const Testimonial = () => {
           property="og:description"
           content="Lisez les témoignages de nos clients satisfaits et découvrez pourquoi ils aiment notre restaurant."
         />
-        <meta property="og:image" content={testimonialImg} />
+        <meta
+          property="og:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/testimonial.jpg"
+        />
         <meta property="og:url" content={window.location.href} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -66,7 +69,10 @@ const Testimonial = () => {
           name="twitter:description"
           content="Lisez les témoignages de nos clients satisfaits et découvrez pourquoi ils aiment notre restaurant."
         />
-        <meta name="twitter:image" content={testimonialImg} />
+        <meta
+          name="twitter:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/testimonial.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <meta
           name="keywords"

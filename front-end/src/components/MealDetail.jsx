@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { Link, useLoaderData, useLocation, useParams } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import mealDetail from "/images/landingimage/mealDetail.jpg";
 import { getMeals } from "../data/API";
 import { AppContext } from "../data/AppProvider";
@@ -31,7 +31,10 @@ const MealDetail = () => {
           property="og:description"
           content={`Découvrez les détails de notre délicieux repas: ${name}.`}
         />
-        <meta property="og:image" content={mealDetail} />
+        <meta
+          property="og:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/mealDetail.jpg"
+        />
         <meta property="og:url" content={window.location.href} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -40,7 +43,10 @@ const MealDetail = () => {
           name="twitter:description"
           content={`Découvrez les détails de notre délicieux repas: ${name}.`}
         />
-        <meta name="twitter:image" content={mealDetail} />
+        <meta
+          name="twitter:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/mealDetail.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content="repas, détail, restaurant, cuisine" />
         <meta name="author" content="el bahja" />

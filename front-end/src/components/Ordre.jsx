@@ -59,7 +59,10 @@ const Ordre = () => {
           property="og:description"
           content="Passez votre commande et profitez de nos délicieux repas."
         />
-        <meta property="og:image" content={ordre} />
+        <meta
+          property="og:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/ordre.png"
+        />
         <meta property="og:url" content={window.location.href} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -68,7 +71,10 @@ const Ordre = () => {
           name="twitter:description"
           content="Passez votre commande et profitez de nos délicieux repas."
         />
-        <meta name="twitter:image" content={ordre} />
+        <meta
+          name="twitter:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/ordre.png"
+        />
         <meta name="robots" content="index, follow" />
         <meta
           name="keywords"

@@ -64,7 +64,10 @@ const Contact = () => {
           property="og:description"
           content="Contactez-nous pour toute demande de renseignements ou réservation."
         />
-        <meta property="og:image" content={contact} />
+        <meta
+          property="og:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/contact.jpg"
+        />
         <meta property="og:url" content={window.location.href} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -73,7 +76,10 @@ const Contact = () => {
           name="twitter:description"
           content="Contactez-nous pour toute demande de renseignements ou réservation."
         />
-        <meta name="twitter:image" content={contact} />
+        <meta
+          name="twitter:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/contact.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content="contact, demandes, réservations" />
         <meta name="author" content="el bahja" />

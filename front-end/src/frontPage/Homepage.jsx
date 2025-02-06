@@ -32,7 +32,10 @@ const HomePage = () => {
           property="og:description"
           content="Bienvenue sur notre site. Découvrez notre restaurant et nos délicieux repas."
         />
-        <meta property="og:image" content="/images/frontpage/welcome.jpg" />
+        <meta
+          property="og:image"
+          content="https://elbahjarestaurant.vercel.app/images/frontpage/welcome.jpg"
+        />
         <meta property="og:url" content={window.location.href} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -41,7 +44,10 @@ const HomePage = () => {
           name="twitter:description"
           content="Bienvenue sur notre site. Découvrez notre restaurant et nos délicieux repas."
         />
-        <meta name="twitter:image" content="/images/frontpage/welcome.jpg" />
+        <meta
+          name="twitter:image"
+          content="https://elbahjarestaurant.vercel.app/images/frontpage/welcome.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content="restaurant, accueil, repas, délicieux" />
         <meta name="author" content="el bahja" />

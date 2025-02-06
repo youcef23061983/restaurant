@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import menuImg from "/images/landingimage/menu.jpg";
 import { useLoaderData, useSearchParams } from "react-router-dom";
 import Meal from "./Meal";
@@ -33,7 +32,10 @@ const Menu = () => {
           property="og:description"
           content="Explore our diverse menu options and find your favorite meal."
         />
-        <meta property="og:image" content={menuImg} />
+        <meta
+          property="og:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/menu.jpg"
+        />
         <meta property="og:url" content={window.location.href} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -42,7 +44,10 @@ const Menu = () => {
           name="twitter:description"
           content="Explore our diverse menu options and find your favorite meal."
         />
-        <meta name="twitter:image" content={menuImg} />
+        <meta
+          name="twitter:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/menu.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content="menu, food, restaurant, meals, dining" />
         <meta name="author" content="el bahja" />

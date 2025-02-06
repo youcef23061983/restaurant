@@ -57,7 +57,10 @@ const Location = () => {
           property="og:description"
           content="Trouvez l'emplacement de notre restaurant et visitez-nous pour un repas délicieux."
         />
-        <meta property="og:image" content={loc} />
+        <meta
+          property="og:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/location.jpg"
+        />
         <meta property="og:url" content={window.location.href} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -66,7 +69,10 @@ const Location = () => {
           name="twitter:description"
           content="Trouvez l'emplacement de notre restaurant et visitez-nous pour un repas délicieux."
         />
-        <meta name="twitter:image" content={loc} />
+        <meta
+          name="twitter:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/location.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <meta
           name="keywords"

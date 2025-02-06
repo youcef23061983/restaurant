@@ -76,7 +76,10 @@ const Gallery = () => {
           property="og:description"
           content="Découvrez notre galerie et plongez dans l'univers culinaire de notre restaurant."
         />
-        <meta property="og:image" content={galleryImg} />
+        <meta
+          property="og:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/gallery.jpg"
+        />
         <meta property="og:url" content={window.location.href} />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -85,7 +88,10 @@ const Gallery = () => {
           name="twitter:description"
           content="Découvrez notre galerie et plongez dans l'univers culinaire de notre restaurant."
         />
-        <meta name="twitter:image" content={galleryImg} />
+        <meta
+          name="twitter:image"
+          content="https://elbahjarestaurant.vercel.app/images/landingimage/gallery.jpg"
+        />
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content="galerie, restaurant, cuisine, photos" />
         <meta name="author" content="Desire" />

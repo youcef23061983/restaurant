@@ -125,7 +125,7 @@ const Bill = () => {
                       src={item?.displayImage}
                       alt="cartImg"
                       loading="lazy"
-                      className="img"
+                      className="img "
                     />
                   </div>
                   <h3 className="cartName">{item?.name}...</h3>

@@ -5,22 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Information = () => {
-  const { cartInformation } = useContext(AppContext);
-  const [information, setInformation] = useState({
-    fullName: "",
-    address: "",
-    city: "",
-    postalCode: "",
-    country: "",
-  });
+  const { cartInformation, information } = useContext(AppContext);
 
   useEffect(() => {
     document.title = "client information";
-
-    const savedInformation = JSON.parse(localStorage.getItem("information"));
-    if (savedInformation) {
-      setInformation(savedInformation); // Set the correct state here
-    }
   }, []);
 
   const navigate = useNavigate();
@@ -38,17 +26,12 @@ const Information = () => {
       return;
     }
 
-    // Save the information to localStorage
-    localStorage.setItem("information", JSON.stringify(information));
-
-    // Call cartInformation and navigate to payment page
-    cartInformation(information);
     navigate("/payment");
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInformation((prev) => ({ ...prev, [name]: value }));
+    cartInformation({ ...information, [name]: value });
   };
 
   const containerVariants = {

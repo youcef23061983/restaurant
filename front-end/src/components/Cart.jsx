@@ -12,9 +12,6 @@ const Cart = () => {
   useEffect(() => {
     document.title = "Cart";
   }, []);
-  useEffect(() => {
-    localStorage.setItem("restaurantCart", JSON.stringify(cart));
-  }, [cart]);
 
   return (
     <div>

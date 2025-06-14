@@ -89,6 +89,11 @@ const AnimatedHamburgerButton = () => {
               <Example name="ORDRE" />
             </Link>
           </motion.li>
+          <motion.li className="cursor-pointer">
+            <Link to="reserver">
+              <Example name="RESERVEZ" />
+            </Link>
+          </motion.li>
         </motion.ul>
 
         {/* Social Media Icons */}

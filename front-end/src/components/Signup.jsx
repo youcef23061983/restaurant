@@ -20,28 +20,54 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      !formData.username ||
-      !formData.email ||
-      !formData.password ||
-      !formData.confirmPassword
-    ) {
+    const { username, email, password, confirmPassword } = formData;
+
+    if (!username || !email || !password || !confirmPassword) {
       alert("Please fill in all required fields");
       return;
     }
 
-    if (formData.password !== formData.confirmPassword) {
+    if (password !== confirmPassword) {
       alert("Passwords do not match");
       return;
     }
-    setFormData({
-      ...formData,
-    });
-    navigate("/cart");
-    setFormData("");
+
+    try {
+      const token = sessionStorage.getItem("token");
+
+      const body = { username, email, password };
+      const response = await fetch("http://localhost:3000/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(body),
+      });
+
+      const parseRes = await response.json();
+
+      if (!response.ok) {
+        alert(parseRes.message || "Signup failed");
+        return;
+      }
+      console.log(parseRes.token);
+
+      sessionStorage.setItem("token", parseRes.token);
+      navigate("/cart");
+      setFormData({
+        username: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+    } catch (err) {
+      console.error("Signup error:", err);
+      alert("Something went wrong. Please try again.");
+    }
   };
   return (
     <div>

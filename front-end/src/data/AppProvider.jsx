@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { getMeals } from "./API";
 import { useReducer } from "react";
 export const AppContext = createContext();
@@ -8,11 +8,14 @@ const initialState = {
   total: 0,
   payment: {},
   information: {},
+  formUser: null,
   isSwitchOn: false,
 };
 const AppProvider = ({ children }) => {
   const [menu, setMenu] = useState([]);
-  const [isSwitchOn, setIsSwitchOn] = useState(false);
+  // const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [isInitialized, setIsInitialized] = useState(false);
+
   useEffect(() => {
     async function getData() {
       const data = await getMeals();
@@ -112,6 +115,28 @@ const AppProvider = ({ children }) => {
         );
         return { ...state, cart: updatedCart };
       }
+      case "SET_FORM_USER": {
+        return {
+          ...state,
+          formUser: action.payload,
+        };
+      }
+      case "LOGOUT": {
+        return {
+          ...state,
+          formUser: null,
+        };
+      }
+      case "SET_AUTH": {
+        return {
+          ...state,
+          formUser: action.payload.user,
+          auth: {
+            isAuthenticated: true,
+            user_role: action.payload.user?.user_role || "customer",
+          },
+        };
+      }
       default:
         return state;
     }
@@ -137,24 +162,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: "DECREASE", payload: id });
     dispatch({ type: "GET_TOTAL" });
   };
-  useEffect(() => {
-    const storedCart = localStorage.getItem("restaurantCart");
-    if (storedCart) {
-      try {
-        dispatch({ type: "LOAD_CART", payload: JSON.parse(storedCart) });
-      } catch (error) {
-        console.error("Error loading cart:", error);
-        localStorage.removeItem("restaurantCart");
-      }
-    }
-  }, []);
-  useEffect(() => {
-    try {
-      localStorage.setItem("restaurantCart", JSON.stringify(state.cart));
-    } catch (error) {
-      console.error("Error saving cart:", error);
-    }
-  }, [state.cart]);
+
   const updateItemPrice = (id, newPrice, newImage) => {
     dispatch({
       type: "UPDATE_ITEM_PRICE",
@@ -181,6 +189,104 @@ const AppProvider = ({ children }) => {
     localStorage.setItem("payment", JSON.stringify(payment));
     dispatch({ type: "PAYMENT", payload: payment });
   };
+  const setFormUser = (user) => {
+    sessionStorage.setItem("formUser", JSON.stringify(user));
+    sessionStorage.setItem("token", user.token); // Assuming token is in user object
+    // dispatch({
+    //   type: "SET_AUTH",
+    //   payload: { user },
+    // });
+    dispatch({ type: "SET_FORM_USER", payload: user });
+  };
+  const logout = async () => {
+    try {
+      sessionStorage.removeItem("formUser");
+      sessionStorage.removeItem("token");
+      dispatch({ type: "LOGOUT" });
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Logout error:", error);
+      throw error; // Re-throw to handle in components
+    }
+  };
+
+  useEffect(() => {
+    if (isInitialized) return;
+
+    const initializeState = () => {
+      const storedCart = sessionStorage.getItem("restaurantCart");
+      if (storedCart) {
+        dispatch({ type: "LOAD_CART", payload: JSON.parse(storedCart) });
+      }
+
+      try {
+        const savedFormUser = sessionStorage.getItem("formUser");
+        if (savedFormUser) {
+          const user = JSON.parse(savedFormUser);
+          setFormUser(user);
+
+          // Verify the user object has required fields
+          if (user && user.email) {
+            dispatch({ type: "SET_FORM_USER", payload: user });
+          }
+        }
+      } catch (e) {
+        console.warn("Failed to load form user", e);
+      }
+
+      // Load payment
+      const storedPayment = sessionStorage.getItem("payment");
+      if (storedPayment) {
+        dispatch({ type: "PAYMENT", payload: JSON.parse(storedPayment) });
+      }
+
+      // Load shipping
+      const storedShipping = sessionStorage.getItem("information");
+      if (storedShipping) {
+        dispatch({ type: "INFORMATION", payload: JSON.parse(storedShipping) });
+      }
+
+      setIsInitialized(true);
+    };
+
+    initializeState();
+  }, [isInitialized]);
+  //   // Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (!isInitialized) return;
+    localStorage.setItem("restaurantCart", JSON.stringify(state.cart));
+    dispatch({ type: "GET_TOTAL" });
+  }, [state.cart, isInitialized]);
+  const checkAuthStatus = async () => {
+    try {
+      const token = sessionStorage.getItem("token");
+      if (!token) return null;
+
+      const response = await fetch("http://localhost:3000/auth/verify", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        sessionStorage.removeItem("token");
+        return null;
+      }
+
+      const data = await response.json();
+      sessionStorage.setItem("token", data.token);
+      sessionStorage.setItem("formUser", JSON.stringify(data.user));
+
+      console.log("Auth check response:", data);
+
+      return data;
+    } catch (error) {
+      console.error("Auth check error:", error);
+      return null;
+    }
+  };
   return (
     <AppContext.Provider
       value={{
@@ -191,7 +297,10 @@ const AppProvider = ({ children }) => {
         increase,
         decrease,
         cartPayment,
+        checkAuthStatus,
+        setFormUser,
         addTocart,
+        logout,
         updateItemPrice,
         cartInformation,
       }}

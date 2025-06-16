@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { FaCcPaypal, FaCcStripe } from "react-icons/fa";
 import { AppContext } from "../data/AppProvider";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js"; // Make sure PayPalButtons is imported
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useNavigate } from "react-router-dom";
@@ -8,40 +9,62 @@ import { motion } from "framer-motion";
 import paymentImg from "/images/landingimage/payment.jpg";
 import CheckoutForm from "./CheckoutForm";
 import Checkout from "./Checkout";
+import { useCallback } from "react";
 
 const Payment = () => {
-  const { total, information, cart, cartPayment } = useContext(AppContext);
-  console.log(total, information, cart);
+  const { total, cartPayment } = useContext(AppContext);
 
   const [payment, setPayment] = useState({});
   const navigate = useNavigate();
   const [paymentSucceeded, setPaymentSucceeded] = useState(false);
+  const [stripePromise, setStripePromise] = useState(null);
+  const [clientSecret, setClientSecret] = useState(null);
 
-  const handleChange = (e) => {
+  useEffect(() => {
+    document.title = "Payment";
+    fetch("http://localhost:3000/config")
+      .then(async (r) => {
+        const { publishableKey } = await r.json();
+        setStripePromise(loadStripe(publishableKey));
+      })
+      .catch((error) => console.error("Error fetching config:", error));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/create-payment-intent", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ total }),
+    })
+      .then(async (r) => {
+        if (!r.ok) {
+          throw new Error("Failed to fetch client secret");
+        }
+        const { clientSecret } = await r.json();
+        setClientSecret(clientSecret);
+      })
+      .catch((error) => console.error("Error fetching client secret:", error));
+  }, []);
+
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setPayment((prevPayment) => ({
       ...prevPayment,
       [name]: value,
     }));
-  };
-
-  useEffect(() => {
-    document.title = "Payment";
   }, []);
 
-  const paymentSubmit = (e) => {
-    e.preventDefault();
+  const paymentSubmit = useCallback(() => {
     cartPayment(payment);
-
-    if (paymentSucceeded) {
-      navigate("/bill");
-    }
     navigate("/bill");
-  };
+  }, [payment, cartPayment, paymentSucceeded]);
 
-  const handleSuccess = () => {
+  const handleSuccess = useCallback(() => {
     setPaymentSucceeded(true);
-  };
+    cartPayment(payment);
+  }, []);
 
   const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
   const initialOptions = {
@@ -49,11 +72,6 @@ const Payment = () => {
     currency: "USD",
     intent: "capture",
     components: "buttons",
-  };
-
-  const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-  const stripeOptions = {
-    clientSecret: import.meta.env.VITE_STRIPE_SECRET_KEY,
   };
 
   const containerVariants = {
@@ -82,6 +100,7 @@ const Payment = () => {
 
   return (
     <motion.div
+      className="min-h-screen bg-[#F5F0EA]"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -91,54 +110,81 @@ const Payment = () => {
         <img
           src={paymentImg}
           className="landingImg"
-          alt="Payment"
+          alt="Restaurant Payment"
           loading="lazy"
         />
       </motion.div>
-      <motion.div className="loginContainer" variants={containerVariants}>
-        <h2>Méthode de paiement:</h2>
-        <form onSubmit={paymentSubmit} className="login-form">
-          <label>
-            Paypal:
-            <input
-              type="radio"
-              id="paypal"
-              name="payment"
-              value="paypal"
-              onChange={handleChange}
-              checked={payment.payment === "paypal"}
-            />
-          </label>
-          <br />
-          <label>
-            Stripe:
-            <input
-              type="radio"
-              id="stripe"
-              name="payment"
-              value="stripe"
-              onChange={handleChange}
-              checked={payment.payment === "stripe"}
-            />
-          </label>
-          <br />
-          {payment.payment === "paypal" && (
+
+      <motion.div
+        className="bg-[#F9FCE1] rounded-lg shadow-md p-6 md:p-8 max-w-2xl mx-auto my-20"
+        variants={containerVariants}
+      >
+        <h2 className="text-2xl font-bold text-[#D47A3B] mb-6 border-b pb-2 border-[#D47A3B]">
+          Payment Method
+        </h2>
+
+        <form className="space-y-6 mb-8">
+          <div className="space-y-4">
+            <label className="flex items-center space-x-3 p-4 border border-[#D47A3B] rounded-lg hover:bg-[#F5F0EA] transition-colors cursor-pointer">
+              <input
+                type="radio"
+                id="paypal"
+                name="payment"
+                value="paypal"
+                onChange={handleChange}
+                checked={payment.payment === "paypal"}
+                className="h-5 w-5 text-[#D47A3B] focus:ring-[#D47A3B]"
+              />
+              <div className="flex items-center space-x-2">
+                <FaCcPaypal className="text-3xl text-blue-600" />
+                <span className="font-medium text-gray-800">PayPal</span>
+              </div>
+            </label>
+
+            <label className="flex items-center space-x-3 p-4 border border-[#D47A3B] rounded-lg hover:bg-[#F5F0EA] transition-colors cursor-pointer">
+              <input
+                type="radio"
+                id="stripe"
+                name="payment"
+                value="stripe"
+                onChange={handleChange}
+                checked={payment.payment === "stripe"}
+                className="h-5 w-5 text-[#D47A3B] focus:ring-[#D47A3B]"
+              />
+              <div className="flex items-center space-x-2">
+                <FaCcStripe className="text-3xl text-purple-600" />
+                <span className="font-medium text-gray-800">
+                  Credit/Debit Card
+                </span>
+              </div>
+            </label>
+          </div>
+        </form>
+
+        {payment.payment === "paypal" && (
+          <div className="bg-white p-4 rounded-lg border border-[#D47A3B]">
             <PayPalScriptProvider options={initialOptions}>
               <Checkout onSuccess={handleSuccess} />
             </PayPalScriptProvider>
-          )}
+          </div>
+        )}
 
-          {payment.payment === "stripe" && (
-            <Elements stripe={stripePromise} options={stripeOptions}>
-              <CheckoutForm />
+        {payment.payment === "stripe" && stripePromise && clientSecret && (
+          <div className="bg-white p-4 rounded-lg border border-[#D47A3B]">
+            <Elements stripe={stripePromise} options={{ clientSecret }}>
+              <CheckoutForm onSuccess={handleSuccess} />
             </Elements>
-          )}
-          {/* {paymentSucceeded && ( */}
-          <button type="submit" className="addCart">
-            Continue
+          </div>
+        )}
+
+        {paymentSucceeded && (
+          <button
+            className="w-full mt-6 bg-[#D47A3B] hover:bg-[#c36a2b] text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300"
+            onClick={paymentSubmit}
+          >
+            Complete Order
           </button>
-          {/* )} */}
-        </form>
+        )}
       </motion.div>
     </motion.div>
   );

@@ -19,7 +19,7 @@ const Reserver = () => {
       {formUser ? (
         <div className="user-nav">
           <span className="welcome-message">
-            Welcome, <span className="username">{formUser?.displayName}</span>
+            Welcome, <span className="username">{formUser?.username}</span>
           </span>
           <Link to="/profile" className="profile-link">
             <LuUserCircle2 className="user-icon" size={32} />

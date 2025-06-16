@@ -182,16 +182,15 @@ const AppProvider = ({ children }) => {
     toggleSize();
   };
   const cartInformation = (information) => {
-    localStorage.setItem("information", JSON.stringify(information));
+    sessionStorage.setItem("information", JSON.stringify(information));
     dispatch({ type: "INFORMATION", payload: information });
   };
   const cartPayment = (payment) => {
-    localStorage.setItem("payment", JSON.stringify(payment));
+    sessionStorage.setItem("payment", JSON.stringify(payment));
     dispatch({ type: "PAYMENT", payload: payment });
   };
   const setFormUser = (user) => {
     sessionStorage.setItem("formUser", JSON.stringify(user));
-    sessionStorage.setItem("token", user.token); // Assuming token is in user object
     // dispatch({
     //   type: "SET_AUTH",
     //   payload: { user },
@@ -254,12 +253,14 @@ const AppProvider = ({ children }) => {
   //   // Save cart to localStorage whenever it changes
   useEffect(() => {
     if (!isInitialized) return;
-    localStorage.setItem("restaurantCart", JSON.stringify(state.cart));
+    sessionStorage.setItem("restaurantCart", JSON.stringify(state.cart));
     dispatch({ type: "GET_TOTAL" });
   }, [state.cart, isInitialized]);
   const checkAuthStatus = async () => {
     try {
       const token = sessionStorage.getItem("token");
+      console.log("check token", token);
+
       if (!token) return null;
 
       const response = await fetch("http://localhost:3000/auth/verify", {

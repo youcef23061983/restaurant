@@ -12,6 +12,9 @@ const Cart = () => {
   useEffect(() => {
     document.title = "Cart";
   }, []);
+  useEffect(() => {
+    sessionStorage.setItem("restaurantCart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div>

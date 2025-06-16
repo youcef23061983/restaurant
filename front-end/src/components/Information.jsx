@@ -11,6 +11,15 @@ const Information = () => {
     document.title = "client information";
   }, []);
 
+  useEffect(() => {
+    document.title = "client information";
+
+    const savedInformation = JSON.parse(sessionStorage.getItem("information"));
+    if (savedInformation) {
+      cartInformation(information);
+    }
+  }, []);
+
   const navigate = useNavigate();
 
   const informationSubmit = (e) => {
@@ -26,6 +35,11 @@ const Information = () => {
       return;
     }
 
+    // Save the information to localStorage
+    sessionStorage.setItem("information", JSON.stringify(information));
+
+    // Call cartInformation and navigate to payment page
+    cartInformation(information);
     navigate("/payment");
   };
 

@@ -56,9 +56,9 @@ function App() {
             userRole: user.user?.user_role || "customer",
             checked: true,
           });
-          setFormUser(user);
+          setFormUser(user?.user);
 
-          sessionStorage.setItem("token", user.token);
+          // sessionStorage.setItem("token", user.token);
         } else {
           setAuthState({
             isAuthenticated: false,

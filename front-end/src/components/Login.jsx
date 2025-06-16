@@ -35,7 +35,6 @@ export async function action({ request }) {
 
     // If response is OK, parse as JSON
     const data = await response.json();
-    console.log("action function data", data);
 
     if (!data.token) {
       return { error: "No token received" };
@@ -50,8 +49,9 @@ export async function action({ request }) {
         id: data.user.id,
         email: data.user.email,
         user_role: data.user.user_role,
-        displayName: data.user.username || data.user.email.split("@")[0],
+        username: data.user.username || data.user.email.split("@")[0],
       },
+      token: data.token,
     };
   } catch (error) {
     return { error: error.message || "An unexpected error occurred" };
@@ -63,7 +63,6 @@ const Login = ({ setAuth }) => {
   const actionData = useActionData();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  console.log("action", actionData);
 
   const updateAuthState = (userData) => {
     setFormUser(userData);
@@ -89,11 +88,12 @@ const Login = ({ setAuth }) => {
 
     checkAuth();
   }, []);
-  console.log("actionData", actionData);
 
   useEffect(() => {
     if (actionData?.success) {
       updateAuthState(actionData.user);
+      sessionStorage.setItem("token", actionData.token);
+
       navigate("/cart");
     }
   }, [actionData, navigate]);

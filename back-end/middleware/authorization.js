@@ -4,6 +4,7 @@ const pool = require("../libs/db");
 const authorization = async (req, res, next) => {
   try {
     const authHeader = req?.headers?.authorization;
+    console.log("Authorization header:", authHeader);
 
     if (!authHeader || !authHeader?.startsWith("Bearer")) {
       return res

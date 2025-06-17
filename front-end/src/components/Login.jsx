@@ -35,6 +35,7 @@ export async function action({ request }) {
 
     // If response is OK, parse as JSON
     const data = await response.json();
+    console.log("action function data", data);
 
     if (!data.token) {
       return { error: "No token received" };
@@ -63,6 +64,7 @@ const Login = ({ setAuth }) => {
   const actionData = useActionData();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+  console.log("action", actionData);
 
   const updateAuthState = (userData) => {
     setFormUser(userData);
@@ -88,6 +90,7 @@ const Login = ({ setAuth }) => {
 
     checkAuth();
   }, []);
+  console.log("actionData", actionData);
 
   useEffect(() => {
     if (actionData?.success) {

@@ -215,3 +215,61 @@ CREATE TABLE tbluser (
     createdAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updatedAt TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
+
+-- ////////////create a reservation table:\\\\\\\\\\\\\\\
+CREATE TABLE reservations (
+  id SERIAL PRIMARY KEY,
+  datetime TIMESTAMP WITH TIME ZONE NOT NULL,
+  
+  -- Generated columns using Algiers timezone
+  reservation_date DATE GENERATED ALWAYS AS (
+    (datetime AT TIME ZONE 'Africa/Algiers')::date
+  ) STORED,
+  
+  reservation_time TIME GENERATED ALWAYS AS (
+    (datetime AT TIME ZONE 'Africa/Algiers')::time
+  ) STORED,
+  
+  capacity INTEGER NOT NULL CHECK (capacity > 0 AND capacity <= 10),
+  customer_id INT REFERENCES tbluser(id) ON DELETE SET NULL,
+  customer_name VARCHAR(100) NOT NULL,
+  customer_phone VARCHAR(20) NOT NULL,
+  customer_email VARCHAR(100),
+  special_requests TEXT,
+  status VARCHAR(20) DEFAULT 'confirmed' 
+    CHECK (status IN ('pending', 'confirmed', 'cancelled', 'no-show')),
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+  
+  -- Changed to composite unique constraint
+  CONSTRAINT unique_reservation_datetime_capacity UNIQUE (datetime, capacity),
+  
+  -- Add constraint for business hours (8AM-11PM Algiers time)
+  CONSTRAINT valid_reservation_time CHECK (
+    (datetime AT TIME ZONE 'Africa/Algiers')::time BETWEEN '08:00:00' AND '23:00:00'
+  )
+);
+
+-- Recreate indexes
+CREATE INDEX idx_reservations_customer ON reservations(customer_id);
+CREATE INDEX idx_reservations_date ON reservations(reservation_date);
+CREATE INDEX idx_reservations_time ON reservations(reservation_time);
+CREATE INDEX idx_reservations_status ON reservations(status);
+CREATE INDEX idx_reservations_datetime ON reservations(datetime);
+
+-- Recreate the timestamp update trigger
+CREATE OR REPLACE FUNCTION update_timestamps()
+RETURNS TRIGGER AS $$
+BEGIN
+  NEW.updated_at = NOW();
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trg_update_timestamps
+BEFORE UPDATE ON reservations
+FOR EACH ROW EXECUTE FUNCTION update_timestamps();
+
+
+-- delete all data and reset id :
+TRUNCATE TABLE reservations RESTART IDENTITY;

@@ -17,7 +17,9 @@ import Cart from "./components/Cart";
 import Ordre from "./components/Ordre";
 import Location from "./components/Location";
 import Error from "./frontPage/Error";
-import Reservation from "./components/Reservation";
+import Reservation, {
+  loader as getReservation,
+} from "./components/Reservation";
 import NotFound from "./frontPage/NotFound";
 import Login, { action as loginAction } from "./components/Login";
 import Information from "./components/Information";
@@ -105,7 +107,17 @@ function App() {
         />
         <Route path="ordre" element={<Ordre />} />
         <Route path="location" element={<Location />} />
-        <Route path="reserver" element={<Reservation />} />
+        <Route
+          path="reserver"
+          element={
+            authState.isAuthenticated ? (
+              <Reservation />
+            ) : (
+              <Navigate to="/login" replace />
+            )
+          }
+          loader={getReservation}
+        />
 
         <Route
           path="/login"
@@ -114,7 +126,7 @@ function App() {
             !authState.isAuthenticated ? (
               <Login setAuth={setAuth} />
             ) : (
-              <Navigate to="/cart" replace />
+              <Navigate to="cart" replace />
             )
           }
         />

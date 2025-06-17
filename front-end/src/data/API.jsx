@@ -17,3 +17,22 @@ export async function getMeals(id) {
   const data = await res.json();
   return data;
 }
+
+export async function getReservation() {
+  const res = await fetch(
+    `${import.meta.env.VITE_PUBLIC_MENU_URL}/reservations`,
+    {
+      method: "GET",
+    }
+  );
+  if (!res.ok) {
+    throw {
+      message: "Failed to fetch menu",
+      statusText: res.statusText,
+      status: res.status,
+    };
+  }
+
+  const data = await res.json();
+  return data;
+}

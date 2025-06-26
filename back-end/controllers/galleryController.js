@@ -1,10 +1,10 @@
 require("dotenv").config();
-const pool = require("../libs/db.js");
+const db = require("../libs/db.js");
 
 const getGallery = async (req, res) => {
   try {
-    const gallery = await pool.query("select * from gallery");
-    res.json(gallery.rows);
+    const gallery = await db.gallery.findMany();
+    res.json(gallery);
   } catch (error) {
     console.log(error.message);
   }

@@ -13,8 +13,8 @@ const initialState = {
 };
 const AppProvider = ({ children }) => {
   const [menu, setMenu] = useState([]);
-  // const [isSwitchOn, setIsSwitchOn] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  const url = import.meta.env.VITE_PUBLIC_PRODUCTS_URL;
 
   useEffect(() => {
     async function getData() {
@@ -263,7 +263,7 @@ const AppProvider = ({ children }) => {
 
       if (!token) return null;
 
-      const response = await fetch("http://localhost:3000/auth/verify", {
+      const response = await fetch(`${url}/auth/verify`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

@@ -221,7 +221,6 @@ CREATE TABLE reservations (
   id SERIAL PRIMARY KEY,
   datetime TIMESTAMP WITH TIME ZONE NOT NULL,
   
-  -- Generated columns using Algiers timezone
   reservation_date DATE GENERATED ALWAYS AS (
     (datetime AT TIME ZONE 'Africa/Algiers')::date
   ) STORED,
@@ -241,23 +240,19 @@ CREATE TABLE reservations (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
   
-  -- Changed to composite unique constraint
   CONSTRAINT unique_reservation_datetime_capacity UNIQUE (datetime, capacity),
   
-  -- Add constraint for business hours (8AM-11PM Algiers time)
   CONSTRAINT valid_reservation_time CHECK (
     (datetime AT TIME ZONE 'Africa/Algiers')::time BETWEEN '08:00:00' AND '23:00:00'
   )
 );
 
--- Recreate indexes
 CREATE INDEX idx_reservations_customer ON reservations(customer_id);
 CREATE INDEX idx_reservations_date ON reservations(reservation_date);
 CREATE INDEX idx_reservations_time ON reservations(reservation_time);
 CREATE INDEX idx_reservations_status ON reservations(status);
 CREATE INDEX idx_reservations_datetime ON reservations(datetime);
 
--- Recreate the timestamp update trigger
 CREATE OR REPLACE FUNCTION update_timestamps()
 RETURNS TRIGGER AS $$
 BEGIN

@@ -19,7 +19,7 @@ const CheckoutForm = ({ onSuccess }) => {
   const [customerData, setCustomerData] = useState(null);
   const tax = parseFloat((total * 0.1).toFixed(2));
   const totalAll = parseFloat((total + tax).toFixed(2));
-
+  const url = import.meta.env.VITE_PUBLIC_MENU_URL;
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -47,19 +47,16 @@ const CheckoutForm = ({ onSuccess }) => {
       if (error) throw error;
 
       if (paymentIntent?.status === "succeeded") {
-        const response = await fetch(
-          "http://localhost:3000/retrieve-customer-data",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              paymentIntentId: paymentIntent.id,
-              cart,
-              information,
-              formUser,
-            }),
-          }
-        );
+        const response = await fetch(`${url}/retrieve-customer-data`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            paymentIntentId: paymentIntent.id,
+            cart,
+            information,
+            formUser,
+          }),
+        });
 
         if (!response.ok) {
           const errorData = await response.json();

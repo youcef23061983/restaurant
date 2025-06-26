@@ -54,7 +54,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const cors = require("cors");
 const morgan = require("morgan");
 const menuRoutes = require("./routes/menu.js");
@@ -65,7 +65,7 @@ const stripe = require("stripe")(process.env.VITE_STRIPE_SECRET_KEY);
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: ["http://localhost:5173", "https://elbahjarestaurant.vercel.app"],
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
@@ -73,7 +73,11 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(morgan("dev"));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev")); // Colorful logs
+} else {
+  app.use(morgan("tiny")); // Minimal logs
+}
 app.use("/menu", menuRoutes);
 app.use("/gallery", galleryRoutes);
 app.use("/auth", authRoutes);
@@ -192,6 +196,9 @@ app.post("/retrieve-customer-data", async (req, res) => {
       details: error.message,
     });
   }
+});
+app.get("/", (req, res) => {
+  res.send("API is running ✅");
 });
 app.listen(PORT, () => {
   console.log("server is running on port", PORT);

@@ -10,6 +10,7 @@ const Signup = () => {
     confirmPassword: "",
   });
   const navigate = useNavigate();
+  const url = import.meta.env.VITE_PUBLIC_MENU_URL;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,7 +40,7 @@ const Signup = () => {
       const token = sessionStorage.getItem("token");
 
       const body = { username, email, password };
-      const response = await fetch("http://localhost:3000/auth/signup", {
+      const response = await fetch(`${url}/auth/signup`, {
         method: "POST",
         headers: {
           "Content-type": "application/json",

@@ -180,6 +180,153 @@ async function main() {
         type: "dessert",
         amount: 1,
       },
+      {
+        name: "les cigares",
+        description:
+          "Les cigares au dessert sont une spécialité sucrée... accompagnés d'un thé à la menthe.",
+        image: ["/images/menu/desert/les cigares.jpg"],
+        price: [300.0],
+        type: "dessert",
+        amount: 1,
+      },
+      {
+        name: "hamoud blanc",
+        description:
+          "Hamoud Boualem Blanche est une boisson gazeuse... goût subtil de citron avec une touche légèrement sucrée.",
+        image: [
+          "/images/menu/drinks/whitebighamoud.jpg",
+          "/images/menu/drinks/whitesmallhamoud.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "hamoud Selecto",
+        description:
+          "Le Selecto est une boisson... malgré une saveur radicalement différente de celle des colas.",
+        image: [
+          "/images/menu/drinks/blackbighamoud.jpg",
+          "/images/menu/drinks/blacksmallhamoud.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "hamoud citron",
+        description:
+          "Hamoud, une limonade aux arômes naturels de citron et sans édulcorant...",
+        image: [
+          "/images/menu/drinks/citronbighamoud.jpg",
+          "/images/menu/drinks/citronsmallhamoud.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "ifruit abricot",
+        description:
+          "La boisson iFruit Abricot est une création rafraîchissante... design moderne et coloré.",
+        image: [
+          "/images/menu/drinks/abricotbigifruit.jpg",
+          "/images/menu/drinks/abricotsmallifruit.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "ifruit orange",
+        description:
+          "La boisson iFruit Orange est une explosion de saveurs... pour les amateurs de saveurs fruitées et pétillantes.",
+        image: [
+          "/images/menu/drinks/orangebigifruit.jpg",
+          "/images/menu/drinks/orangesmallifruit.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "ifruit raisin",
+        description:
+          "La boisson iFruit Raisin est une fusion pétillante de saveurs riches et sucrées...",
+        image: [
+          "/images/menu/drinks/raisinsbigifuit.jpg",
+          "/images/menu/drinks/raisinsmallifruit.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "ramy",
+        description:
+          "Le cocktail Ramy est une boisson pétillante qui marie... Servi bien frais avec des glaçons...",
+        image: [
+          "/images/menu/drinks/bigramy.jpg",
+          "/images/menu/drinks/smallramy.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "N'gaous",
+        description:
+          "La boisson N'gaous est une infusion rafraîchissante... allie les saveurs fruitées à une touche d'herbes fraîches...",
+        image: [
+          "/images/menu/drinks/Ngaousbig.jpg",
+          "/images/menu/drinks/Ngaoussmall.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "orangina",
+        description:
+          "Orangina est une boisson gazeuse au goût d'orange... bouteille en forme d'orange...",
+        image: [
+          "/images/menu/drinks/bigorangina.jpg",
+          "/images/menu/drinks/smallorangina.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "rouiba",
+        description:
+          "Rouiba propose des boissons rafraîchissantes... comme l'orange et la pomme...",
+        image: [
+          "/images/menu/drinks/bigrouiba.jpg",
+          "/images/menu/drinks/smallrouiba.jpg",
+        ],
+        price: [200.0, 100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "café",
+        description:
+          "Au sein d'un restaurant traditionnel, le café est préparé avec soin... pour conclure un repas...",
+        image: ["/images/menu/drinks/café.jpg"],
+        price: [100.0],
+        type: "boissons",
+        amount: 1,
+      },
+      {
+        name: "thé",
+        description:
+          "Au sein d'un restaurant traditionnel, le thé est une boisson servie avec élégance... enrichir l'expérience.",
+        image: ["/images/menu/drinks/thé.jpg"],
+        price: [100.0],
+        type: "boissons",
+        amount: 1,
+      },
     ],
     skipDuplicates: true,
   });

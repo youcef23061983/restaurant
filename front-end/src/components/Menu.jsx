@@ -56,18 +56,22 @@ const Menu = () => {
 
       <MenuHeader />
       <div className="btnsDiv">
-        {types.map((type, id) => (
-          <button
-            className={`typeBtn ${menuType === type ? "selected" : null}`}
-            key={id}
-            name="type"
-            id="type"
-            value={type}
-            onClick={() => setSearchParams({ type })}
-          >
-            {type}
-          </button>
-        ))}
+        {types.map((type, id) => {
+          return (
+            <div>
+              <button
+                className={`typeBtn ${menuType === type ? "selected" : null}`}
+                key={id}
+                name="type"
+                id="type"
+                value={type}
+                onClick={() => setSearchParams({ type })}
+              >
+                {type}
+              </button>
+            </div>
+          );
+        })}
       </div>
       <div className="menuList">
         {menuFiletr.map((meal) => {

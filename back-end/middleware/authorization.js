@@ -57,7 +57,7 @@
 
 // module.exports = { authorization };
 
-require("dotenv").config();
+// require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const db = require("../libs/db.js");
 const authorization = async (req, res, next) => {

@@ -7,7 +7,7 @@
 //   database: "restaurant",
 // });
 // module.exports = pool;
-require("dotenv").config();
+// require("dotenv").config();
 const { PrismaClient } = require("@prisma/client");
 
 const db = globalThis.prisma || new PrismaClient();

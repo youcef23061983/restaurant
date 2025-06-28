@@ -27,6 +27,7 @@ const postOrdre = async (req, res) => {
     tbluser_id,
     subtotal,
     tax,
+    delivery,
     total,
     sellingMeals,
   } = req.body;
@@ -39,8 +40,8 @@ const postOrdre = async (req, res) => {
     const orderRes = await client.query(
       `INSERT INTO orders (
         full_name, address, city, postal_code, country,
-        payment, tbluser_id, subtotal, tax, total,amount
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11)
+        payment, tbluser_id, subtotal, tax, total,amount,delivery
+      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11,$12)
       RETURNING id`,
       [
         fullName,
@@ -54,6 +55,7 @@ const postOrdre = async (req, res) => {
         tax,
         total,
         amount,
+        delivery,
       ]
     );
 

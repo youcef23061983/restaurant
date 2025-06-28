@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { cart, total, amount, clearCart } = useContext(AppContext);
+  console.log("total", total, typeof total);
+
   const tax = parseFloat((total * 0.1).toFixed(2));
   const totalAll = parseFloat((total + tax).toFixed(2));
 

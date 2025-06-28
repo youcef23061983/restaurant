@@ -99,6 +99,7 @@ model Order {
   payment     String?
   subtotal    Decimal
   tax         Decimal
+  delivery    Decimal
   total       Decimal
   amount      Int         
   tbluser_id  Int?

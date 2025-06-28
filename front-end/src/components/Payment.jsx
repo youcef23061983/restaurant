@@ -21,6 +21,15 @@ const Payment = () => {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
   const url = import.meta.env.VITE_PUBLIC_PRODUCTS_URL;
+  console.log("total", total, typeof total);
+
+  const tax = parseFloat((total * 0.1).toFixed(2));
+  const deliveryFee = parseFloat((total * 0.13).toFixed(2));
+  const totalAll = parseFloat((total + tax + deliveryFee).toFixed(2));
+  const totalInCents = Math.round(totalAll * 100);
+
+  console.log("payment cart", cart);
+  console.log("typeof totalInCents", typeof totalInCents, totalInCents);
 
   useEffect(() => {
     document.title = "Payment";
@@ -38,7 +47,7 @@ const Payment = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ total }),
+      body: JSON.stringify({ totalInCents }),
     })
       .then(async (r) => {
         if (!r.ok) {
@@ -62,22 +71,20 @@ const Payment = () => {
     cartPayment(payment);
     navigate("/bill");
   }, [payment, cartPayment, paymentSucceeded]);
-  const tax = parseFloat((total * 0.1).toFixed(2));
-  const totalAll = parseFloat((total + tax).toFixed(2));
-  console.log("payment cart", cart);
 
   const sellingMeals = cart.map((item) => ({
     id: item.id,
     product_name: item.name,
     amount: item.amount,
     unitPrice: item?.price[0],
-    totalPrice: item?.price * item?.amount,
+    totalPrice: item?.price[0] * item?.amount,
   }));
   console.log("my product", {
     ...information,
     sellingMeals,
     subtotal: total,
     tax,
+    delivery: deliveryFee,
     amount,
     total: totalAll,
     payment: payment.payment,
@@ -96,6 +103,7 @@ const Payment = () => {
         subtotal: total,
         tax,
         amount,
+        delivery: deliveryFee,
         total: totalAll,
         payment: payment.payment,
         tbluser_id: formUser?.id,

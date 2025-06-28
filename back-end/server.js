@@ -32,18 +32,19 @@ app.use("/auth", authRoutes);
 app.use("/reservations", reservationRoutes);
 app.use("ordre", ordreRoutes);
 app.post("/create-payment-intent", async (req, res) => {
-  const { total } = req.body;
-  console.log("total", total);
-  console.log(typeof total);
-  console.log("new totel", Math.round(total * 100));
+  const { totalInCents } = req.body;
+  // console.log("total", totalAll);
+  // console.log(typeof totalAll);
+  // console.log("new total", Math.round(totalAll * 100));
+  console.log("Received totalInCents:", totalInCents);
 
-  if (!total || total <= 0) {
+  if (!totalInCents || totalInCents <= 0) {
     return res.status(400).json({ error: "Invalid amount" });
   }
 
   try {
     const paymentIntent = await stripe.paymentIntents.create({
-      amount: Math.round(total * 100), // Properly round to nearest integer
+      amount: totalInCents,
       currency: "usd",
 
       automatic_payment_methods: { enabled: true },

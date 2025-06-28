@@ -268,3 +268,33 @@ FOR EACH ROW EXECUTE FUNCTION update_timestamps();
 
 -- delete all data and reset id :
 TRUNCATE TABLE reservations RESTART IDENTITY;
+
+
+
+
+-- //////////////CREATE orders & order_items  TABLES:\\\\\\\\\\\\\\\\\\\\\\\\\\\
+CREATE TABLE orders (
+  id SERIAL PRIMARY KEY,
+  full_name TEXT NOT NULL,
+  address TEXT NOT NULL,
+  city TEXT NOT NULL,
+  postal_code TEXT NOT NULL,
+  country TEXT NOT NULL,
+  payment TEXT, 
+  subtotal NUMERIC(10, 2) NOT NULL,
+  tax NUMERIC(10, 2) NOT NULL,
+  total NUMERIC(10, 2) NOT NULL,
+  amount INTEGER NOT NULL,
+  tbluser_id INTEGER REFERENCES tbluser(id), 
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE order_items (
+  id SERIAL PRIMARY KEY,
+  order_id INTEGER REFERENCES orders(id) ON DELETE CASCADE,
+  product_id INTEGER, 
+  product_name TEXT NOT NULL,
+  amount INTEGER NOT NULL,
+  unit_price NUMERIC(10, 2) NOT NULL,
+  total_price NUMERIC(10, 2) NOT NULL
+);

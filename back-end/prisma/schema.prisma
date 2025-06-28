@@ -54,6 +54,8 @@ model Tbluser {
   updatedAt  DateTime  @updatedAt
 
   reservations Reservation[] // 👈 Add this line for the relation
+
+  Order Order[] @relation(name: "UserOrders")
 }
 enum UserRole {
   customer
@@ -86,4 +88,36 @@ enum ReservationStatus {
   confirmed
   cancelled
   no_show
+}
+model Order {
+  id          Int          @id @default(autoincrement())
+  full_name   String
+  address     String
+  city        String
+  postal_code String
+  country     String
+  payment     String?
+  subtotal    Decimal
+  tax         Decimal
+  total       Decimal
+  amount      Int         
+  tbluser_id  Int?
+  user        Tbluser?     @relation(fields: [tbluser_id], references: [id], name: "UserOrders")
+  created_at  DateTime     @default(now())
+  order_items OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id           Int     @id @default(autoincrement())
+  order_id     Int
+  order        Order   @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  product_id   Int
+  product_name String
+  amount       Int
+  unit_price   Decimal
+  total_price  Decimal
+
+  @@map("order_items")
 }

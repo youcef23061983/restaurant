@@ -12,7 +12,8 @@ import Checkout from "./Checkout";
 import { useCallback } from "react";
 
 const Payment = () => {
-  const { total, cartPayment } = useContext(AppContext);
+  const { total, cartPayment, cart, amount, formUser, information } =
+    useContext(AppContext);
 
   const [payment, setPayment] = useState({});
   const navigate = useNavigate();
@@ -61,8 +62,50 @@ const Payment = () => {
     cartPayment(payment);
     navigate("/bill");
   }, [payment, cartPayment, paymentSucceeded]);
+  const tax = parseFloat((total * 0.1).toFixed(2));
+  const totalAll = parseFloat((total + tax).toFixed(2));
+  console.log("payment cart", cart);
+
+  const sellingMeals = cart.map((item) => ({
+    id: item.id,
+    product_name: item.name,
+    amount: item.amount,
+    unitPrice: item?.price[0],
+    totalPrice: item?.price * item?.amount,
+  }));
+  console.log("my product", {
+    ...information,
+    sellingMeals,
+    subtotal: total,
+    tax,
+    amount,
+    total: totalAll,
+    payment: payment.payment,
+    tbluser_id: formUser?.id,
+  });
+
+  const ordreFun = async () => {
+    const res = await fetch(`${url}/ordre`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...information,
+        sellingMeals,
+        subtotal: total,
+        tax,
+        amount,
+        total: totalAll,
+        payment: payment.payment,
+        tbluser_id: formUser?.id,
+      }),
+    });
+    return res.json();
+  };
 
   const handleSuccess = useCallback(() => {
+    ordreFun();
     setPaymentSucceeded(true);
     cartPayment(payment);
   }, []);

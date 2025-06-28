@@ -8,6 +8,7 @@ const menuRoutes = require("./routes/menu.js");
 const galleryRoutes = require("./routes/gallery.js");
 const authRoutes = require("./routes/authUser.js");
 const reservationRoutes = require("./routes/reservation.js");
+const ordreRoutes = require("./routes/ordre.js");
 const stripe = require("stripe")(process.env.VITE_STRIPE_SECRET_KEY);
 
 app.use(
@@ -29,6 +30,7 @@ app.use("/menu", menuRoutes);
 app.use("/gallery", galleryRoutes);
 app.use("/auth", authRoutes);
 app.use("/reservations", reservationRoutes);
+app.use("ordre", ordreRoutes);
 app.post("/create-payment-intent", async (req, res) => {
   const { total } = req.body;
   console.log("total", total);

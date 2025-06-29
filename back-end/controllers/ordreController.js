@@ -1,12 +1,13 @@
 require("dotenv").config();
-const pool = require("../libs/db.js");
-
+const db = require("../libs/db.js");
 const getOrdre = async (req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT * FROM orders ORDER BY created_at DESC"
-    );
-    res.json(result.rows);
+    const orders = await db.order.findMany({
+      orderBy: {
+        created_at: "desc",
+      },
+    });
+    res.json(orders);
   } catch (error) {
     console.error("Fetching orders failed:", error.message);
     res.status(500).json({ error: "Failed to fetch orders" });
@@ -14,8 +15,6 @@ const getOrdre = async (req, res) => {
 };
 
 const postOrdre = async (req, res) => {
-  const client = await pool.connect();
-
   const {
     fullName,
     address,
@@ -33,62 +32,52 @@ const postOrdre = async (req, res) => {
   } = req.body;
 
   try {
-    // ✅ Start a transaction
-    await client.query("BEGIN");
+    // ✅ Prisma transaction
+    const result = await db.$transaction(async (prisma) => {
+      // 1. Create order
+      const order = await prisma.order.create({
+        data: {
+          full_name: fullName,
+          address,
+          city,
+          postal_code: postalCode,
+          country,
+          payment,
+          tbluser_id,
+          subtotal,
+          tax,
+          delivery,
+          total,
+          amount,
+        },
+      });
 
-    // 1. Insert into orders
-    const orderRes = await client.query(
-      `INSERT INTO orders (
-        full_name, address, city, postal_code, country,
-        payment, tbluser_id, subtotal, tax, total,amount,delivery
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10,$11,$12)
-      RETURNING id`,
-      [
-        fullName,
-        address,
-        city,
-        postalCode,
-        country,
-        payment,
-        tbluser_id,
-        subtotal,
-        tax,
-        total,
-        amount,
-        delivery,
-      ]
-    );
+      // 2. Create all order items
+      await prisma.orderItem.createMany({
+        data: sellingMeals.map((item) => ({
+          order_id: order.id,
+          product_id: item.id,
+          product_name: item.product_name,
+          amount: item.amount,
+          unit_price: item.unitPrice,
+          total_price: item.totalPrice,
+        })),
+      });
 
-    const orderId = orderRes.rows[0].id;
+      return order;
+    });
 
-    // 2. Insert into order_items
-    for (const item of sellingMeals) {
-      await client.query(
-        `INSERT INTO order_items (
-          order_id, product_id, product_name, amount, unit_price, total_price
-        ) VALUES ($1, $2, $3, $4, $5, $6)`,
-        [
-          orderId,
-          item.id,
-          item.product_name,
-          item.amount,
-          item.unitPrice,
-          item.totalPrice,
-        ]
-      );
-    }
-
-    // ✅ Commit if all successful
-    await client.query("COMMIT");
-
-    res.status(201).json({ message: "Order and items saved successfully." });
+    res.status(201).json({
+      success: true,
+      orderId: result.id,
+    });
   } catch (error) {
-    // ❌ Rollback on any error
-    await client.query("ROLLBACK");
-    console.error("Transaction failed:", error.message);
-    res.status(500).json({ error: "Transaction failed. Order not saved." });
-  } finally {
-    client.release();
+    console.error("Transaction failed:", error);
+    res.status(500).json({
+      error: "Order processing failed",
+      details:
+        process.env.NODE_ENV !== "production" ? error.message : undefined,
+    });
   }
 };
 

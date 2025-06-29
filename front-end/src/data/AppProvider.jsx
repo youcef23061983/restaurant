@@ -74,6 +74,35 @@ const AppProvider = ({ children }) => {
         total = parseFloat(total.toFixed(2));
         return { ...state, amount, total };
       }
+
+      // case "GET_TOTAL": {
+      //   let { amount, total } = state.cart.reduce(
+      //     (cartTotal, cartItem) => {
+      //       // 1. Safely get price (fallback to 0 if invalid)
+      //       const rawPrice = cartItem.displayPrice ?? cartItem.price[0];
+      //       const itemPrice = typeof rawPrice === "number" ? rawPrice : 0;
+
+      //       // 2. Validate before calculation
+      //       if (isNaN(itemPrice)) {
+      //         console.error("Invalid price detected:", cartItem);
+      //         return cartTotal;
+      //       }
+
+      //       // 3. Accumulate with fixed precision
+      //       cartTotal.amount += Number(cartItem.amount) || 0;
+      //       cartTotal.total += Number((itemPrice * cartItem.amount).toFixed(2));
+
+      //       return cartTotal;
+      //     },
+      //     { total: 0, amount: 0 }
+      //   );
+
+      //   // 4. Final validation
+      //   total = Number(total.toFixed(2));
+      //   if (isNaN(total)) total = 0;
+
+      //   return { ...state, amount, total };
+      // }
       case "ADD_TO_CART": {
         const newProduct = menu.find(
           (product) => product.id === action.payload

@@ -30,12 +30,10 @@ app.use("/menu", menuRoutes);
 app.use("/gallery", galleryRoutes);
 app.use("/auth", authRoutes);
 app.use("/reservations", reservationRoutes);
-app.use("ordre", ordreRoutes);
+app.use("/ordre", ordreRoutes);
 app.post("/create-payment-intent", async (req, res) => {
   const { totalInCents } = req.body;
-  // console.log("total", totalAll);
-  // console.log(typeof totalAll);
-  // console.log("new total", Math.round(totalAll * 100));
+
   console.log("Received totalInCents:", totalInCents);
 
   if (!totalInCents || totalInCents <= 0) {

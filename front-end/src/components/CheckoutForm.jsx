@@ -17,8 +17,11 @@ const CheckoutForm = ({ onSuccess }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [message, setMessage] = useState(null);
   const [customerData, setCustomerData] = useState(null);
-  const tax = parseFloat((total * 0.1).toFixed(2));
-  const totalAll = parseFloat((total + tax).toFixed(2));
+  // Cleaner version (identical results)
+  const tax = +(total * 0.1).toFixed(2); // + is faster than parseFloat
+  const deliveryFee = +(total * 0.13).toFixed(2);
+  const totalAll = +(total + tax + deliveryFee).toFixed(2);
+
   const url = import.meta.env.VITE_PUBLIC_MENU_URL;
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -276,6 +279,12 @@ const CheckoutForm = ({ onSuccess }) => {
                 <div>
                   <p className="text-gray-600 text-sm">Taxe </p>
                   <p className="text-xl font-bold text-[#D47A3B]">{tax} DA</p>
+                </div>
+                <div>
+                  <p className="text-gray-600 text-sm">Livraison</p>
+                  <p className="text-xl font-bold text-[#D47A3B]">
+                    {deliveryFee} DA{" "}
+                  </p>
                 </div>
                 <div>
                   <p className="text-gray-600 text-sm">Total </p>

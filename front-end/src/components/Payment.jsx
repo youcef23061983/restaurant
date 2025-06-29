@@ -20,16 +20,32 @@ const Payment = () => {
   const [paymentSucceeded, setPaymentSucceeded] = useState(false);
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
-  const url = import.meta.env.VITE_PUBLIC_PRODUCTS_URL;
+  const url = import.meta.env.VITE_PUBLIC_MENU_URL;
   console.log("total", total, typeof total);
 
-  const tax = parseFloat((total * 0.1).toFixed(2));
-  const deliveryFee = parseFloat((total * 0.13).toFixed(2));
-  const totalAll = parseFloat((total + tax + deliveryFee).toFixed(2));
+  //first method: Cleaner version (identical results)No more parseFloat() needed!
+  const tax = +(total * 0.1).toFixed(2); // + is faster than parseFloat
+  const deliveryFee = +(total * 0.13).toFixed(2);
+  const totalAll = +(total + tax + deliveryFee).toFixed(2);
   const totalInCents = Math.round(totalAll * 100);
 
-  console.log("payment cart", cart);
+  // second method:with parseFloat:
+  // const tax = (total * 0.1).toFixed(2);
+  // const deliveryFee = (total * 0.13).toFixed(2);
+  // const totalAll = (total + parseFloat(tax) + parseFloat(deliveryFee)).toFixed(
+  //   2
+  // );
+  // const totalInCents = Math.round(totalAll * 100);
+
   console.log("typeof totalInCents", typeof totalInCents, totalInCents);
+  console.log("totalInCents validation:", {
+    value: totalInCents,
+    isInteger: totalInCents,
+    isPositive: totalInCents > 0,
+  });
+
+  console.log("payment cart", cart);
+  console.log("types", typeof totalAll, typeof tax, typeof deliveryFee);
 
   useEffect(() => {
     document.title = "Payment";

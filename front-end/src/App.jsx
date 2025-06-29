@@ -60,7 +60,7 @@ function App() {
           });
           setFormUser(user?.user);
 
-          // sessionStorage.setItem("token", user.token);
+          sessionStorage.setItem("token", user.token);
         } else {
           setAuthState({
             isAuthenticated: false,
@@ -96,12 +96,12 @@ function App() {
         <Route path="google" element={<Google />} />
 
         <Route
-          path="/cart"
+          path="cart"
           element={
             authState.isAuthenticated ? (
               <Cart />
             ) : (
-              <Navigate to="/login" replace />
+              <Navigate to="/login" state={{ from: "/cart" }} replace />
             )
           }
         />
@@ -126,7 +126,7 @@ function App() {
             !authState.isAuthenticated ? (
               <Login setAuth={setAuth} />
             ) : (
-              <Navigate to="cart" replace />
+              <Navigate to="/cart" replace />
             )
           }
         />

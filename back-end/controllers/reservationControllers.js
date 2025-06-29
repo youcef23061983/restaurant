@@ -1,4 +1,3 @@
-// require("dotenv").config();
 const db = require("../libs/db.js");
 
 const getReservation = async (req, res) => {

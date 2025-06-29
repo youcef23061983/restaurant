@@ -1,4 +1,3 @@
-require("dotenv").config();
 const db = require("../libs/db.js");
 const getOrdre = async (req, res) => {
   try {

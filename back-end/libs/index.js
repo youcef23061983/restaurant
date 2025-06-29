@@ -1,5 +1,3 @@
-// require("dotenv").config();
-
 const JWT = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const hashPassword = async (password) => {

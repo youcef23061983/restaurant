@@ -29,6 +29,7 @@ const postOrdre = async (req, res) => {
     total,
     sellingMeals,
   } = req.body;
+  console.log("payment", payment);
 
   try {
     // ✅ Prisma transaction

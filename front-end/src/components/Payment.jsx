@@ -12,8 +12,15 @@ import Checkout from "./Checkout";
 import { useCallback } from "react";
 
 const Payment = () => {
-  const { total, cartPayment, cart, amount, formUser, information } =
-    useContext(AppContext);
+  const {
+    total,
+    cartPayment,
+    cart,
+    amount,
+    formUser,
+    information,
+    payment: pay,
+  } = useContext(AppContext);
 
   const [payment, setPayment] = useState({});
   const navigate = useNavigate();
@@ -85,6 +92,7 @@ const Payment = () => {
 
   const paymentSubmit = useCallback(() => {
     cartPayment(payment);
+
     navigate("/bill");
   }, [payment, cartPayment, paymentSucceeded]);
 
@@ -103,7 +111,7 @@ const Payment = () => {
     delivery: deliveryFee,
     amount,
     total: totalAll,
-    payment: payment.payment,
+    payment: pay.payment,
     tbluser_id: formUser?.id,
   });
 
@@ -121,7 +129,7 @@ const Payment = () => {
         amount,
         delivery: deliveryFee,
         total: totalAll,
-        payment: payment.payment,
+        payment: pay.payment,
         tbluser_id: formUser?.id,
       }),
     });
@@ -129,10 +137,11 @@ const Payment = () => {
   };
 
   const handleSuccess = useCallback(() => {
-    ordreFun();
     setPaymentSucceeded(true);
     cartPayment(payment);
-  }, []);
+    ordreFun();
+  }, [payment, cartPayment]);
+  console.log("pay", pay.payment);
 
   const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
   const initialOptions = {

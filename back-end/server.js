@@ -42,7 +42,7 @@ app.use(
   })
 );
 
-app.use(express.json());
+app.use(express.json({ limit: "10kb" })); // Limit request size
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); // Colorful logs
 } else {

@@ -9,11 +9,11 @@
     "build": "rm -rf node_modules && npm install --force && npx prisma generate",
     "postinstall": "npx prisma generate",
     "start": "node server.js",
-    "render-start": "npm install --production --force && npx prisma generate && node server.js"
+    "render-start": "npm install --production --legacy-peer-deps --force && npx prisma generate && node server.js"
   },
   "engines": {
-    "node": ">=18.0.0 <21.0.0",
-    "npm": ">=9.0.0 <10.0.0"
+    "node": "18.x",
+    "npm": "9.x"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
@@ -31,7 +31,7 @@
     "cors": "^2.8.5",
     "debug": "4.3.4",
     "dotenv": "^16.5.0",
-    "express": "^4.21.2",
+    "express": "4.18.2",
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.10",

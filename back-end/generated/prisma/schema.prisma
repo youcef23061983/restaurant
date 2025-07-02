@@ -1,0 +1,120 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Menu {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String?
+  image       String[]  @default([])
+  price       Decimal[] @default([])
+  type        MenuType
+  amount      Int       @default(1)
+}
+
+enum MenuType {
+  menu
+  dessert
+  boissons
+}
+
+model Gallery {
+  id  Int    @id @default(autoincrement())
+  url String
+}
+
+model Tbluser {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  username  String
+  contact   String?
+  accounts  String[] @default([])
+  password  String?
+  provider  String   @default("local")
+  country   String?
+  currency  String   @default("USD")
+  user_role UserRole @default(customer)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  reservations Reservation[]
+  Order        Order[]       @relation(name: "UserOrders")
+}
+
+enum UserRole {
+  customer
+  admin
+}
+
+model Reservation {
+  id               Int               @id @default(autoincrement())
+  datetime         DateTime
+  capacity         Int
+  customer_id      Int?
+  customer         Tbluser?          @relation(fields: [customer_id], references: [id], onDelete: SetNull)
+  customer_name    String
+  customer_phone   String
+  customer_email   String?
+  special_requests String?
+  status           ReservationStatus @default(confirmed)
+  created_at       DateTime          @default(now())
+  updated_at       DateTime          @default(now()) @updatedAt
+
+  @@unique([datetime, capacity])
+  @@index([customer_id])
+  @@index([status])
+  @@index([datetime])
+}
+
+enum ReservationStatus {
+  pending
+  confirmed
+  cancelled
+  no_show
+}
+
+model Order {
+  id          Int         @id @default(autoincrement())
+  full_name   String
+  address     String
+  city        String
+  postal_code String
+  country     String
+  payment     String?
+  subtotal    Decimal     @db.Decimal(10, 2)
+  tax         Decimal     @db.Decimal(10, 2)
+  delivery    Decimal     @db.Decimal(10, 2)
+  total       Decimal     @db.Decimal(10, 2)
+  amount      Int
+  tbluser_id  Int?
+  user        Tbluser?    @relation(fields: [tbluser_id], references: [id], name: "UserOrders")
+  created_at  DateTime    @default(now())
+  order_items OrderItem[]
+
+  @@map("orders")
+}
+
+model OrderItem {
+  id           Int     @id @default(autoincrement())
+  order_id     Int
+  order        Order   @relation(fields: [order_id], references: [id], onDelete: Cascade)
+  product_id   Int
+  product_name String
+  amount       Int
+  unit_price   Decimal @db.Decimal(10, 2)
+  total_price  Decimal @db.Decimal(10, 2)
+
+  @@map("order_items")
+}

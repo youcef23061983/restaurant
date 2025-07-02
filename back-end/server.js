@@ -41,6 +41,7 @@ app.use(
     optionsSuccessStatus: 200,
   })
 );
+app.disable("x-powered-by"); // Remove Express header
 
 app.use(express.json({ limit: "10kb" })); // Limit request size
 if (process.env.NODE_ENV === "development") {

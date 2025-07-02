@@ -5,15 +5,20 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server.js",
-    "build": "npx prisma generate",
+    "build": "rm -rf node_modules && npm install && npx prisma generate",
     "postinstall": "npx prisma generate",
-    "start": "node server.js"
+    "start": "node server.js",
+    "render-start": "npm install && npx prisma generate && node server.js"
   },
   "engines": {
-  "node": "18.x"
-},
+    "node": "18.x"
+  },
   "prisma": {
     "seed": "node prisma/seed.js"
+  },
+  "resolutions": {
+    "gopd": "^1.0.1",
+    "get-intrinsic": "^1.2.1"
   },
   "keywords": [],
   "author": "",

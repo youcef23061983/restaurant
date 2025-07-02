@@ -11,15 +11,37 @@ const reservationRoutes = require("./routes/reservation.js");
 const ordreRoutes = require("./routes/ordre.js");
 const stripe = require("stripe")(process.env.VITE_STRIPE_SECRET_KEY);
 
+// app.use(
+//   cors({
+//     origin: ["http://localhost:5173", "https://elbahjarestaurant.vercel.app"],
+//     methods: ["GET", "POST", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//     credentials: true,
+//     optionsSuccessStatus: 200,
+//   })
+// );
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:4173", // ✅ Vite preview
+  "https://elbahjarestaurant.vercel.app",
+];
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://elbahjarestaurant.vercel.app"],
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     optionsSuccessStatus: 200,
   })
 );
+
 app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev")); // Colorful logs

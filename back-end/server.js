@@ -61,46 +61,76 @@ app.use("/gallery", galleryRoutes);
 app.use("/auth", authRoutes);
 app.use("/reservations", reservationRoutes);
 app.use("/ordre", ordreRoutes);
+// app.use(async (req, res, next) => {
+//   // 🛑 Skip Arcjet on /health
+//   if (req.path === "/health") return next();
+//   if (req.path.startsWith("/assets")) return next();
+//   console.log("Client IP:", req.ip);
+//   console.log("User-Agent:", req.headers["user-agent"]);
+//   console.log("Accept-Language:", req.headers["accept-language"]);
+//   console.log("Request Path:", req.path);
+
+//   try {
+//     const ajPromise = await aj;
+
+//     const decision = await ajPromise.protect(req, {
+//       requested: 1, // specifies that each request consumes 1 token
+//     });
+
+//     if (decision.isDenied()) {
+//       if (decision.reason.isRateLimit()) {
+//         res.status(429).json({ error: "Too Many Requests" });
+//       } else if (decision.reason.isBot()) {
+//         res.status(403).json({ error: "Bot access denied" });
+//       } else {
+//         res.status(403).json({ error: "Forbidden" });
+//       }
+//       return;
+//     }
+
+//     // check for spoofed bots
+//     if (
+//       decision.results.some(
+//         (result) => result.reason.isBot() && result.reason.isSpoofed()
+//       )
+//     ) {
+//       res.status(403).json({ error: "Spoofed bot detected" });
+//       return;
+//     }
+
+//     next();
+//   } catch (error) {
+//     console.log("Arcjet error", error);
+//     next(error);
+//   }
+// });
+
 app.use(async (req, res, next) => {
-  // 🛑 Skip Arcjet on /health
-  if (req.path === "/health") return next();
-  if (req.path.startsWith("/assets")) return next();
+  // Skip Arcjet for health checks and static assets
+  if (req.path === "/health" || req.path.startsWith("/assets")) {
+    return next();
+  }
 
   try {
-    const ajPromise = await aj;
+    // Ensure we get the real client IP (important for Render deployments)
+    req.headers["x-forwarded-for"] = req.headers["x-forwarded-for"] || req.ip;
 
-    const decision = await ajPromise.protect(req, {
-      requested: 1, // specifies that each request consumes 1 token
-    });
+    const decision = await (await aj).protect(req, { requested: 1 });
 
     if (decision.isDenied()) {
-      if (decision.reason.isRateLimit()) {
-        res.status(429).json({ error: "Too Many Requests" });
-      } else if (decision.reason.isBot()) {
-        res.status(403).json({ error: "Bot access denied" });
-      } else {
-        res.status(403).json({ error: "Forbidden" });
-      }
-      return;
-    }
-
-    // check for spoofed bots
-    if (
-      decision.results.some(
-        (result) => result.reason.isBot() && result.reason.isSpoofed()
-      )
-    ) {
-      res.status(403).json({ error: "Spoofed bot detected" });
-      return;
+      const statusCode = decision.reason.isRateLimit() ? 429 : 403;
+      const message = decision.reason.isRateLimit()
+        ? "Too many requests"
+        : "Access denied";
+      return res.status(statusCode).json({ error: message });
     }
 
     next();
   } catch (error) {
-    console.log("Arcjet error", error);
-    next(error);
+    console.error("Arcjet protection error:", error);
+    next(); // Fail open (or use next(error) to fail closed)
   }
 });
-
 app.post("/create-payment-intent", async (req, res) => {
   const { totalInCents } = req.body;
 

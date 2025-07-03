@@ -78,12 +78,20 @@ const aj = (async () => {
 
   return arcjet({
     key: process.env.ARCJET_KEY,
-    characteristics: ["ip.src"],
+    // characteristics: ["ip.src"],
+    //  characteristics: [
+    //         "ip.src",
+    //         "http.method",
+    //         "http.path",
+    //         "http.headers.accept",
+    //         "http.headers.user-agent",
+    //       ],
+    characteristics: ["ip.src", "header.user-agent", "header.accept-language"],
+
     rules: [
       shield({ mode: "LIVE" }),
 
       detectBot({
-        // mode: process.env.NODE_ENV === "development" ? "DRY_RUN" : "LIVE",
         mode: "LIVE",
         allow: ["CATEGORY:SEARCH_ENGINE"],
       }),

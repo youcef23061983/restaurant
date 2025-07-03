@@ -63,7 +63,7 @@ app.use("/reservations", reservationRoutes);
 app.use("/ordre", ordreRoutes);
 app.use(async (req, res, next) => {
   // 🛑 Skip Arcjet on /health
-  if (req.path === "/health") return next();
+  if (req.path === "/health" || req.path === "/") return next();
   if (req.path.startsWith("/assets")) return next();
   console.log("Client IP:", req.ip);
   console.log("User-Agent:", req.headers["user-agent"]);

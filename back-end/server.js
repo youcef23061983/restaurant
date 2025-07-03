@@ -100,6 +100,7 @@ app.use(async (req, res, next) => {
     next(error);
   }
 });
+
 app.post("/create-payment-intent", async (req, res) => {
   const { totalInCents } = req.body;
 

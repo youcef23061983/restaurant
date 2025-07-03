@@ -106,29 +106,29 @@ app.use("/ordre", ordreRoutes);
 // });
 
 app.use(async (req, res, next) => {
-  // Skip Arcjet for health checks and static assets
+  // Skip Arcjet for specific routes
   if (req.path === "/health" || req.path.startsWith("/assets")) {
     return next();
   }
 
   try {
-    // Ensure we get the real client IP (important for Render deployments)
-    req.headers["x-forwarded-for"] = req.headers["x-forwarded-for"] || req.ip;
+    // Ensure proper IP detection
+    req.ip = req.headers["x-forwarded-for"] || req.ip;
 
     const decision = await (await aj).protect(req, { requested: 1 });
 
     if (decision.isDenied()) {
-      const statusCode = decision.reason.isRateLimit() ? 429 : 403;
+      const status = decision.reason.isRateLimit() ? 429 : 403;
       const message = decision.reason.isRateLimit()
         ? "Too many requests"
         : "Access denied";
-      return res.status(statusCode).json({ error: message });
+      return res.status(status).json({ error: message });
     }
 
     next();
   } catch (error) {
     console.error("Arcjet protection error:", error);
-    next(); // Fail open (or use next(error) to fail closed)
+    next(); // Fail open (recommended for production)
   }
 });
 app.post("/create-payment-intent", async (req, res) => {

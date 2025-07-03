@@ -69,7 +69,6 @@
 // };
 
 // module.exports = initializeArcjet();
-
 require("dotenv").config();
 
 const initializeArcjet = async () => {
@@ -77,41 +76,41 @@ const initializeArcjet = async () => {
     const arcjetModule = await import("@arcjet/node");
     const { default: arcjet, shield, detectBot, tokenBucket } = arcjetModule;
 
-    // Set environment mode
-    process.env.ARCJET_ENV =
-      process.env.NODE_ENV === "production" ? "production" : "development";
+    // Set environment mode explicitly
+    const isDevelopment = process.env.NODE_ENV !== "production";
+    process.env.ARCJET_ENV = isDevelopment ? "development" : "production";
 
     return arcjet({
       key: process.env.ARCJET_KEY,
+      // Enhanced characteristics for better fingerprinting
       characteristics: [
         "ip.src",
+        "http.headers.x-forwarded-for",
         "http.headers.user-agent",
         "http.headers.accept-language",
         "http.method",
         "http.path",
+        "http.host",
       ],
       rules: [
         shield({
-          mode: process.env.ARCJET_ENV === "development" ? "DRY_RUN" : "LIVE",
+          mode: isDevelopment ? "DRY_RUN" : "LIVE",
         }),
         detectBot({
-          mode: process.env.ARCJET_ENV === "development" ? "DRY_RUN" : "LIVE",
+          mode: isDevelopment ? "DRY_RUN" : "LIVE",
           allow: ["CATEGORY:SEARCH_ENGINE"],
         }),
         tokenBucket({
-          mode: process.env.ARCJET_ENV === "development" ? "DRY_RUN" : "LIVE",
-          //   refillRate: 30,
-          //   interval: 5,
-          //   capacity: 20,
-          refillRate: 100, // Increased from 30
-          interval: 60, // Per minute instead of 5 seconds
-          capacity: 200,
+          mode: isDevelopment ? "DRY_RUN" : "LIVE",
+          refillRate: 30,
+          interval: 5,
+          capacity: 20,
         }),
       ],
     });
   } catch (err) {
-    console.error("Arcjet initialization error:", err);
-    // Return a mock protection function if initialization fails
+    console.error("Arcjet initialization failed:", err);
+    // Fallback protection that always allows requests
     return {
       protect: () =>
         Promise.resolve({

@@ -28,7 +28,6 @@ const Payment = () => {
   const [stripePromise, setStripePromise] = useState(null);
   const [clientSecret, setClientSecret] = useState(null);
   const url = import.meta.env.VITE_PUBLIC_MENU_URL;
-  console.log("total", total, typeof total);
 
   //first method: Cleaner version (identical results)No more parseFloat() needed!
   const tax = +(total * 0.1).toFixed(2); // + is faster than parseFloat
@@ -90,12 +89,6 @@ const Payment = () => {
     }));
   }, []);
 
-  const paymentSubmit = useCallback(() => {
-    cartPayment(payment);
-
-    navigate("/bill");
-  }, [payment, cartPayment, paymentSucceeded]);
-
   const sellingMeals = cart.map((item) => ({
     id: item.id,
     product_name: item.name,
@@ -111,7 +104,7 @@ const Payment = () => {
     delivery: deliveryFee,
     amount,
     total: totalAll,
-    payment: pay.payment,
+    payment: payment.payment,
     tbluser_id: formUser?.id,
   });
 
@@ -129,7 +122,7 @@ const Payment = () => {
         amount,
         delivery: deliveryFee,
         total: totalAll,
-        payment: pay.payment,
+        payment: payment.payment,
         tbluser_id: formUser?.id,
       }),
     });
@@ -137,11 +130,11 @@ const Payment = () => {
   };
 
   const handleSuccess = useCallback(() => {
-    setPaymentSucceeded(true);
     cartPayment(payment);
     ordreFun();
-  }, [payment, cartPayment, pay]);
-  console.log("pay", pay.payment, payment);
+    setPaymentSucceeded(true);
+  }, [payment, cartPayment]);
+  console.log("pay", pay);
   console.log("payment", payment);
 
   const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
@@ -258,7 +251,7 @@ const Payment = () => {
         {paymentSucceeded && (
           <button
             className="w-full mt-6 bg-[#D47A3B] hover:bg-[#c36a2b] text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300"
-            onClick={paymentSubmit}
+            onClick={() => navigate("/bill")}
           >
             Complete Order
           </button>

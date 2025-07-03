@@ -9,6 +9,9 @@ const galleryRoutes = require("./routes/gallery.js");
 const authRoutes = require("./routes/authUser.js");
 const reservationRoutes = require("./routes/reservation.js");
 const ordreRoutes = require("./routes/ordre.js");
+const aj = require("./libs/arctjet.js");
+const helmet = require("helmet");
+
 const stripe = require("stripe")(process.env.VITE_STRIPE_SECRET_KEY);
 
 // app.use(
@@ -49,11 +52,52 @@ if (process.env.NODE_ENV === "development") {
 } else {
   app.use(morgan("tiny")); // Minimal logs
 }
+app.use(helmet());
+
 app.use("/menu", menuRoutes);
 app.use("/gallery", galleryRoutes);
 app.use("/auth", authRoutes);
 app.use("/reservations", reservationRoutes);
 app.use("/ordre", ordreRoutes);
+app.use(async (req, res, next) => {
+  // 🛑 Skip Arcjet on /health
+  if (req.path === "/health") return next();
+  if (req.path.startsWith("/assets")) return next();
+
+  try {
+    const ajPromise = await aj;
+
+    const decision = await ajPromise.protect(req, {
+      requested: 1, // specifies that each request consumes 1 token
+    });
+
+    if (decision.isDenied()) {
+      if (decision.reason.isRateLimit()) {
+        res.status(429).json({ error: "Too Many Requests" });
+      } else if (decision.reason.isBot()) {
+        res.status(403).json({ error: "Bot access denied" });
+      } else {
+        res.status(403).json({ error: "Forbidden" });
+      }
+      return;
+    }
+
+    // check for spoofed bots
+    if (
+      decision.results.some(
+        (result) => result.reason.isBot() && result.reason.isSpoofed()
+      )
+    ) {
+      res.status(403).json({ error: "Spoofed bot detected" });
+      return;
+    }
+
+    next();
+  } catch (error) {
+    console.log("Arcjet error", error);
+    next(error);
+  }
+});
 app.post("/create-payment-intent", async (req, res) => {
   const { totalInCents } = req.body;
 

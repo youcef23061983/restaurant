@@ -140,8 +140,9 @@ const Payment = () => {
     setPaymentSucceeded(true);
     cartPayment(payment);
     ordreFun();
-  }, [payment, cartPayment]);
-  console.log("pay", pay.payment);
+  }, [payment, cartPayment, pay]);
+  console.log("pay", pay.payment, payment);
+  console.log("payment", payment);
 
   const paypalClientId = import.meta.env.VITE_PAYPAL_CLIENT_ID;
   const initialOptions = {

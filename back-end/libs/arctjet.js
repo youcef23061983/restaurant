@@ -78,7 +78,6 @@ const aj = (async () => {
 
   return arcjet({
     key: process.env.ARCJET_KEY,
-    // characteristics: ["ip.src"],
     //  characteristics: [
     //         "ip.src",
     //         "http.method",

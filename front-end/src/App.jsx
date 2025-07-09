@@ -31,7 +31,6 @@ import Signup from "./components/Signup";
 import Google from "./components/Google";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "./data/AppProvider";
-
 function App() {
   const [authState, setAuthState] = useState({
     isAuthenticated: false,
@@ -39,7 +38,6 @@ function App() {
     checked: false,
   });
   const { setFormUser, checkAuthStatus } = useContext(AppContext);
-
   const setAuth = (userData) => {
     setAuthState({
       isAuthenticated: true,
@@ -51,7 +49,6 @@ function App() {
     const verifyAuth = async () => {
       try {
         const user = await checkAuthStatus();
-
         if (user) {
           setAuthState({
             isAuthenticated: true,
@@ -77,10 +74,8 @@ function App() {
         });
       }
     };
-
     verifyAuth();
   }, []);
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<Layout />} errorElement={<Error />}>
@@ -118,7 +113,6 @@ function App() {
           }
           loader={getReservation}
         />
-
         <Route
           path="/login"
           action={loginAction}
@@ -145,5 +139,4 @@ function App() {
   }
   return <RouterProvider router={router} />;
 }
-
 export default App;

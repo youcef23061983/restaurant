@@ -15,7 +15,6 @@ const AppProvider = ({ children }) => {
   const [menu, setMenu] = useState([]);
   const [isInitialized, setIsInitialized] = useState(false);
   const url = import.meta.env.VITE_PUBLIC_PRODUCTS_URL;
-
   useEffect(() => {
     async function getData() {
       const data = await getMeals();
@@ -74,7 +73,6 @@ const AppProvider = ({ children }) => {
         total = parseFloat(total.toFixed(2));
         return { ...state, amount, total };
       }
-
       // case "GET_TOTAL": {
       //   let { amount, total } = state.cart.reduce(
       //     (cartTotal, cartItem) => {
@@ -237,16 +235,13 @@ const AppProvider = ({ children }) => {
       throw error; // Re-throw to handle in components
     }
   };
-
   useEffect(() => {
     if (isInitialized) return;
-
     const initializeState = () => {
       const storedCart = sessionStorage.getItem("restaurantCart");
       if (storedCart) {
         dispatch({ type: "LOAD_CART", payload: JSON.parse(storedCart) });
       }
-
       try {
         const savedFormUser = sessionStorage.getItem("formUser");
         if (savedFormUser) {
@@ -261,19 +256,14 @@ const AppProvider = ({ children }) => {
       } catch (e) {
         console.warn("Failed to load form user", e);
       }
-
-      // Load payment
       const storedPayment = sessionStorage.getItem("payment");
       if (storedPayment) {
         dispatch({ type: "PAYMENT", payload: JSON.parse(storedPayment) });
       }
-
-      // Load shipping
       const storedShipping = sessionStorage.getItem("information");
       if (storedShipping) {
         dispatch({ type: "INFORMATION", payload: JSON.parse(storedShipping) });
       }
-
       setIsInitialized(true);
     };
 
@@ -288,10 +278,7 @@ const AppProvider = ({ children }) => {
   const checkAuthStatus = async () => {
     try {
       const token = sessionStorage.getItem("token");
-      console.log("check token", token);
-
       if (!token) return null;
-
       const response = await fetch(`${url}/auth/verify`, {
         method: "GET",
         headers: {
@@ -299,18 +286,13 @@ const AppProvider = ({ children }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-
       if (!response.ok) {
         sessionStorage.removeItem("token");
         return null;
       }
-
       const data = await response.json();
       sessionStorage.setItem("token", data.token);
       sessionStorage.setItem("formUser", JSON.stringify(data.user));
-
-      console.log("Auth check response:", data);
-
       return data;
     } catch (error) {
       console.error("Auth check error:", error);

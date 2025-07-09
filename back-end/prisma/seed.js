@@ -352,7 +352,6 @@ async function main() {
     ],
     skipDuplicates: true,
   });
-
   console.log("✅ Menu data inserted successfully!");
 }
 

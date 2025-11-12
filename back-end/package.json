@@ -4,23 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "clean-install": "rm -rf node_modules && npm install",
     "dev": "nodemon server.js",
-    "build": "rm -rf node_modules && npm install --force && npx prisma generate",
-    "postinstall": "npx prisma generate",
+    "build": "prisma generate",
     "start": "node server.js",
-    "render-start": "NODE_OPTIONS='--max-old-space-size=512' npm ci --production && npx prisma generate && node server.js"
+    "render-start": "npm ci --production && prisma generate && node server.js"
   },
   "engines": {
-    "node": "18.x",
-    "npm": "9.x"
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
-  },
-  "resolutions": {
-    "gopd": "^1.0.1",
-    "get-intrinsic": "^1.2.1"
   },
   "keywords": [],
   "author": "",
